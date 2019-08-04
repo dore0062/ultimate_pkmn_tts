@@ -8,7 +8,7 @@ function onLoad(saved_data)
   end
 
   dialogue = false
-  -- WebRequest.get("https://mmbndb-dca4f.firebaseio.com/database_version.json", function(a) webRequestCallback2(a) end) -- actually checks the version.
+  WebRequest.get("https://mmbndb-dca4f.firebaseio.com/database_version.json", function(a) webRequestCallback2(a) end) -- actually checks the version.
 end
 
 function webRequestCallback(webReturn) -- Saves latest version
@@ -51,10 +51,10 @@ end
 function onChat(message, player)
   if player.host == true then
     if dialogue == true then
-      if message == "no" or "No" or "NO" then
+      if message:lower() == "no" then
         printToAll("PKMN DB Module: update not preformed.")
       end
-      if message == "yes" or "Yes" or "YES" then
+      if message:lower() == "yes" then
         getData()
       end
     end
