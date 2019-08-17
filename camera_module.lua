@@ -1,17 +1,36 @@
-function cameraRotate()
-local y = self.getRotation()
- self.setRotationSmooth({0,y[2] + 5, 0})
-Wait.frames(cameraRotate, 30)
+-- Hey
+#include tween
 
-local x = self.getPosition()
-Wait.frames(|| z = orbit.getPosition(), 2)
+local dt = 1 -- Delta time
+
+function onload()
+  intro_camera = getObjectFromGUID("ee47c3")
+end
+
+function camera_rotate()
+  fart = true
+  subject = {x = 0}
+  t3 = tween.new(10000, subject, {x = 360})
+
+  function print_thing()
+    if subject["x"] == 360 then fart = false end
+    t3:update(1)
+    camera_rotation(subject["x"])
+  end
+end
 
 
-local angle = 5
-local rotatedX = Math.cos(angle) * (z[1] - x[1]) - Math.sin(angle) * (z[2] - x[2]) + x[2];
-local rotatedY = Math.sin(angle) * (z[1] - x[1]) + Math.cos(angle) * (z[2] - x[2]) + y[2];
+function onUpdate() -- 1 = 1 frame
+  if fart == true then
+    print_thing()
+  end
+end
 
-
-
-Wait.frames(|| orbit.setPosition({rotatedX, x[2], rotatedY}), 2)
- end
+function camera_rotation(i)
+  Player["White"].lookAt({
+    position = {x = 0, y = 0, z = 0},
+    pitch = 25,
+    yaw = i,
+    distance = 50,
+  })
+end
