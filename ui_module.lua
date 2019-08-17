@@ -3,10 +3,11 @@ GUID = self.getGUID()
 end
 
 function generateAttackUI(params) -- Generates the UI for the two players involved (Can be reworked for multiple players... not really worried about it now.)
-  color1 = params["color1"]
+  database = params["database"] -- Always activate during a function
+  color1 = params["color1"] -- why this aint workin
   color2 = params["color2"]
   actor1 = params["actor1"]
-  actor2 = params["actor2"]
+  actor2 = params["actor1"]
 
   local function generate_sideUI(color)
     local sideUI = '<image id="fight_'..color..'" rectAlignment="LowerRight" height="300" width="175" image="fight" preserveAspect="true" offsetxy="25 150" onclick="'.. GUID ..'/hide_attacks" onMouseEnter="'.. GUID ..'/mouseOver" onMouseExit="'.. GUID ..'/mouseOut" visibility="'.. color ..'"></image>'
