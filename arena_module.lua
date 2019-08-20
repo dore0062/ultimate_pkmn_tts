@@ -18,7 +18,7 @@ function onLoad()
 end
 
 function onChat()
-  battleStart("Red", "Blue")
+  print(battleStart("Red", "NPC"))
 end
 
 --------------------------------------------------------
@@ -37,15 +37,18 @@ arenaOptions = {
 --------------------------------------------------------
 -- battleStart
 -- Starts the battle by preparing variables and getting Pokemon in the players party.
+-- Returns true if battle did not start successfully.
 function battleStart(color1, color2)
   -- Error handling messages
   ---------------------------------------------
-  local function error_handler(message) -- Hard crash.
-    error("function 'battleStart': " .. message:lower())
+  local function error_handler(message) -- Hard crash. Will stop script and break everything.
+    error = ("function 'battleStart': " .. message:lower() .. " - revert with time controls or reload save.")
+    return error
   end
 
-  local function player_error(message) -- Player error.
+  local function player_error(message) -- Player error. Does not stop script.
     print("[FF5733]" .. message)
+    -- Can't put return true here because it'll just return this particular function...
   end
 
   -- Validity checks
@@ -53,12 +56,12 @@ function battleStart(color1, color2)
   -- Check if a battle is already in progress
   if arenaOptions.battle_in_progress == true then
     player_error("Battle already in progress!") -- We use this to indicate player-errors (not script errors.)
-    return nil
+    return true
   end
 
   -- Variable check
-  if color1 == nil or color2 == nil then
-    error_handler("Missing arguments")
+  if color1 == nil or color2 == nil or color1 == "" or color2 == "" then
+    error(error_handler("Missing arguments"))
   end
   assert(type(color1) == "string", "Argument 1 is not a string")
   assert(type(color2) == "string", "Argument 2 is not a string")
@@ -85,11 +88,13 @@ function battleStart(color1, color2)
     if color2v == true and color1v == true then
       -- Nothing, continue
     else
-      error_handler("One or more players not currently ingame")
+      player_error("One or more players not currently ingame")
+      return true
     end
 
     if color1:lower() == color2:lower() then
-      error_handler("Cannot start when both players are the same color")
+      player_error("Cannot start when both players are the same color")
+      return true
     end
   end
   ---------------------------------------------
@@ -124,13 +129,13 @@ function battleStart(color1, color2)
     if player1.pokemon == nil or player2.pokemon == nil then
       player_error("Unable to start battle, one or more players do not have a Pokemon!")
       if color2 == "NPC" then
-        error_handler("npc has no pokemon")
+        error(error_handler("npc has no pokemon"))
       end
-      return nil
+      return true
     end
     if #player1.pokemon > 6 or #player2.pokemon > 6 then
       player_error("Too many Pokemon. Make sure each player has only 6 Pokemon slotted.")
-      return nil
+      return true
     end
   end
 
