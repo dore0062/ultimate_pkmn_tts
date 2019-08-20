@@ -13,16 +13,14 @@ function onLoad()
 
   ---- Holders (not possible to dynamically load because i am lazy atm)
   Red_holder = getObjectFromGUID("395f64")
-
-  ---- help
 end
 
-function onChat()
+function onChat() -- TEMP REMOVE ON COMPLETION
   print(battleStart("Red", "NPC"))
 end
 
 --------------------------------------------------------
--- Options
+-- Options (use setvar("") to change options.)
 --------------------------------------------------------
 arenaOptions = {
   music = true, -- If music will be loaded for battles. Disable for more then one arena.
@@ -39,9 +37,12 @@ arenaOptions = {
 -- Starts the battle by preparing variables and getting Pokemon in the players party.
 -- Returns true if battle did not start successfully.
 function battleStart(color1, color2)
+
+
   -- Error handling messages
   ---------------------------------------------
   local function error_handler(message) -- Hard crash. Will stop script and break everything.
+    log("Game crashed. Please reload.")
     error = ("function 'battleStart': " .. message:lower() .. " - revert with time controls or reload save.")
     return error
   end
@@ -51,11 +52,12 @@ function battleStart(color1, color2)
     -- Can't put return true here because it'll just return this particular function...
   end
 
+
   -- Validity checks
   ---------------------------------------------
   -- Check if a battle is already in progress
   if arenaOptions.battle_in_progress == true then
-    player_error("Battle already in progress!") -- We use this to indicate player-errors (not script errors.)
+    player_error("Battle already in progress!")
     return true
   end
 
@@ -66,7 +68,7 @@ function battleStart(color1, color2)
   assert(type(color1) == "string", "Argument 1 is not a string")
   assert(type(color2) == "string", "Argument 2 is not a string")
 
-  -- Check if player is connected. May remove in certain releases.
+  -- Check if player is connected/are not the same color. Remove connected in certain releases.
   if arenaOptions.debug == false then
     local colors = {} -- Color exists check
     local playerList = Player.getPlayers()
@@ -97,8 +99,10 @@ function battleStart(color1, color2)
       return true
     end
   end
-  ---------------------------------------------
 
+
+  -- Pokemon Check
+  ---------------------------------------------
   local fp_holder = _G[color1 .. "_holder"]
   local sp_holder = _G[color2 .. "_holder"]
 
@@ -108,10 +112,9 @@ function battleStart(color1, color2)
   }
 
   local player2 = {
-    -- slotZones = sp_holder.getTable("slots"),
+    -- slotZones = sp_holder.getTable("slots"), -- Stopping a crash temporarily
     pokemon = nil
   }
-
 
   -- Counts Pokemon and adds to current party
   for _, b in ipairs(player1.slotZones) do -- Adds all currently slotted Pokemon into the zone
@@ -122,7 +125,6 @@ function battleStart(color1, color2)
       end
     end
   end
-
 
   -- Error handler
   if arenaOptions.debug == false then
@@ -140,9 +142,10 @@ function battleStart(color1, color2)
   end
 
 
-  -- All checks passed, battle can commence.
-  arenaOptions.battle_in_progress = true
-  print("Proceeded!")
+  -- Setup
+  ---------------------------------------------
+  arenaOptions.battle_in_progress = true -- Prevents another battle from happening on the same arena.
+  log("PKMN Arena Module.".. self.getGUID() .." - Battle started")
 end
 
 
