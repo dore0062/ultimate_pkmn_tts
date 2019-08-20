@@ -18,7 +18,7 @@ function onLoad()
 end
 
 function onChat()
-  battleStart("Red", "NPC")
+  battleStart("Red", "Blue")
 end
 
 --------------------------------------------------------
@@ -107,6 +107,7 @@ function battleStart(color1, color2)
     pokemon = nil
   }
 
+
   -- Counts Pokemon and adds to current party
   for _, b in ipairs(player1.slotZones) do -- Adds all currently slotted Pokemon into the zone
     local obj = getObjectFromGUID(b[1])
@@ -117,6 +118,7 @@ function battleStart(color1, color2)
     end
   end
 
+
   -- Error handler
   if arenaOptions.debug == false then
     if player1.pokemon == nil or player2.pokemon == nil then
@@ -124,11 +126,18 @@ function battleStart(color1, color2)
       if color2 == "NPC" then
         error_handler("npc has no pokemon")
       end
+      return nil
+    end
+    if #player1.pokemon > 6 or #player2.pokemon > 6 then
+      player_error("Too many Pokemon. Make sure each player has only 6 Pokemon slotted.")
+      return nil
     end
   end
 
+
   -- All checks passed, battle can commence.
   arenaOptions.battle_in_progress = true
+  print("Proceeded!")
 end
 
 
