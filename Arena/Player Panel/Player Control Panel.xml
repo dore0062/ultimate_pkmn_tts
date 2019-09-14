@@ -1,0 +1,4 @@
+<!-- INIT -->
+<panel id="default" position="0 10 0" rotation="90 0 0">
+  <button id="p1" height="149" width="264" position="0 60 0" image="Start" preserveAspect="True" onClick="95cfd8/readyUp"/>
+</panel>
