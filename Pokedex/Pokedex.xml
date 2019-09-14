@@ -1,0 +1,38 @@
+<panel id="p_text" active="false" showAnimation="FadeIn" height="12000" width="5000" scale="0.025 0.025 0.025" position="-6 -335 -300" rotation="65 0 180">
+<text id ="name" fontSize    ="500" alignment ="MiddleRight" position ="4400 3000" color  = "white" text ="ERROR"></text>
+<text id ="hp"   fontSize    ="500" alignment ="MiddleRight" position ="4400 1050" color  = "white" text ="ERROR"></text> <!-- Abusing scale to get HIGH DEFINITION TEXT!!!! -->
+
+<text id ="attack1" fontSize ="500" alignment ="MiddleRight" position ="3400 -1250" color = "white" text ="Test"></text>
+<text id ="damage1" fontSize ="500" alignment ="MiddleRight" position ="4400 -1250" color = "white" text ="10"></text>
+
+<text id ="attack2" fontSize ="500" alignment ="MiddleRight" position ="3400 -2200" color = "white" text ="Test"></text>
+<text id ="damage2" fontSize ="500" alignment ="MiddleRight" position ="4400 -2200" color = "white" text ="10"></text>
+
+<text id ="attack3" fontSize ="500" alignment ="MiddleRight" position ="3400 -3200" color = "white" text ="Test"></text>
+<text id ="damage3" fontSize ="500" alignment ="MiddleRight" position ="4400 -3200" color = "white" text ="10"></text>
+</panel>
+
+<panel id="n_text" active="false" showAnimation="FadeIn" color="" height="5500" width="5000" scale="0.035 0.035 0.035" position="-6 -335 -300" rotation="65 0 180"> <!-- Only one Pokemon goes above 10 characters. -->
+<text id ="name1" fontSize ="1200" alignment ="MiddleRight" fontStyle ="bold" position         ="2400 1750 0 " color  = "#808059" text     =" "></text>
+<text id ="name2" fontSize ="1200" alignment ="MiddleRight" scale     ="1.3 1.3 1.3" fontStyle ="bold" position       ="1700 -50 0 " color = "#808059" text="Bulbasaur"></text> <!-- Default start point -->
+<text id ="name3" fontSize ="1200" alignment ="MiddleRight" fontStyle ="bold" position         ="2400 -1900 0 " color = "#808059" text     ="Ivysaur"></text>
+</panel>
+
+<panel id="grey" height="500" width="500" position="-6 -337 -300" rotation="65 0 180">
+<image id ="hp1" active ="false" image ="off" position ="52.1 62 0" height    ="30" width ="30"></image>
+<image id ="hp2" active ="false" image ="off" position ="18.3 -1.5 0" height  ="36" width ="36"></image>
+<image id ="hp3" active ="false" image ="off" position ="52.1 -66.2 0" height ="30" width ="30"></image>
+</panel>
+
+
+<panel id="BottomScreen" active="false" height="310" width="350" position="22 50 -35">
+  <inputfield id="search" placeholder="Enter Pokedex ID" onEndEdit="search" characterValidation="Integer" characterLimit="3" height="30" width ="150" position  ="-80 -140 0" rotation="0 0 180"></inputfield>
+  <button image ="arrow" height  ="55" width  ="55" position  ="-17 -66 0" onClick ="up" rotation           ="0 0 180"></button>
+  <button image ="arrow" height  ="55" width  ="55" position  ="-17 78 0" onClick  ="down"></button>
+  <button image ="select" height ="65" width  ="145" position ="97 -87 0" onClick  ="select" preserveAspect ="True" rotation="0 0 180"></button>
+  <button image ="back2" height   ="65" width  ="145" position ="97 -16 0" onClick  ="back" preserveAspect   ="True" rotation="0 0 180"></button>
+  <button image ="spawn" height  ="115" width ="145" position ="97 78 0" onClick   ="spawn" preserveAspect  ="True" rotation="0 0 180"></button>
+ </panel>
+
+ <panel id="open" height="40" width="550" position="0 315 -65" rotation="90" onClick="open"></panel>
+ <panel id="close" active="false" height="40" width="550" position="0 -475 -520" onClick="close" rotation = "-30"></panel>
