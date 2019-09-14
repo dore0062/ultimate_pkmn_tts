@@ -1,8 +1,22 @@
---------------------------------------
--- Pokedex by skeeveo
--- Looping effects are animations, trigger effects are SFX
--- Todo: add search bar
---------------------------------------
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+---                                 .::.                               ---
+---                               .;:**'            AMC                ---
+---                               `                  0                 ---
+---   .:XHHHHk.              db.   .;;.     dH  MX   0                 ---
+--- oMMMMMMMMMMM       ~MM  dMMP :MMMMMR   MMM  MR      ~MRMN          ---
+--- QMMMMMb  "MMX       MMMMMMP !MX' :M~   MMM MMM  .oo. XMMM 'MMM     ---
+---   `MMMM.  )M> :X!Hk. MMMM   XMM.o"  .  MMMMMMM X?XMMM MMM>!MMP     ---
+---    'MMMb.dM! XM M'?M MMMMMX.`MMMMMMMM~ MM MMM XM `" MX MMXXMM      ---
+---     ~MMMMM~ XMM. .XM XM`"MMMb.~*?**~ .MMX M t MMbooMM XMMMMMP      ---
+---      ?MMM>  YMMMMMM! MM   `?MMRb.    `"""   !L"MMMMM XM IMMM       ---
+---       MMMX   "MMMM"  MM       ~%:           !Mh.""" dMI IMMP       ---
+---       'MMM.                                             IMX        ---
+---        ~M!M                                             IMP        ---
+---                        MASTER TRAINER GALAXY                       ---
+---                           POKEDEX MODULE                           ---
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
 
 function onload()
   self.interactable = false -- Move via gizmo tool. Disable to lock first. Pokedex should NEVER MOVE!!!
