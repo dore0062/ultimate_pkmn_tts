@@ -18,8 +18,11 @@
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
 
-function onload()
-  self.interactable = false -- Move via gizmo tool. Disable to lock first. Pokedex should NEVER MOVE!!!
+-- The pokedex is a sandbox spawner for debugging and setting up custom teams.
+-- It's state is always reset between sessions since it doesn't actually matter. 
+
+function onload(saved_data)
+  -- self.interactable = false -- Move via gizmo tool. Disable to lock first. Pokedex should NEVER MOVE!!!
   self.setName("Pokedex") -- Should always be called "Pokedex"
   self.AssetBundle.playLoopingEffect(2) -- instead of fancy onload/onsave just set it closed to reset state
 
@@ -39,11 +42,26 @@ function onload()
     return element
   end
 
+  if saved_data ~= "" then -- Deletes any loaded hologram from last save
+    local model = JSON.decode(saved_data)
+    if model then
+    local m = getObjectFromGUID(model["model"])
+    if m then
+    m.destruct()
+  end
+end
+  end
+
   pokeball   = extractChild(self, {'PokeDex (1)(Clone)', 'BottomScreen', 'Canvas (1)', 'Panel', 'Pokeball'}).getComponent("RectTransform")
   sheet      = extractChild(self, {'PokeDex (1)(Clone)', 'Top_Part', 'Canvas', 'Panel', 'Panel', 'Image'}).getComponent("RectTransform")
   type_image = extractChild(self, {'PokeDex (1)(Clone)', 'Top_Part', 'Canvas', 'Panel', 'Lines', '2', 'Type_image', 'Image', }).getComponent("RectTransform")
 
   selected = false
+end
+
+function onSave()
+  saved_data = JSON.encode(saved_model)
+  return saved_data
 end
 
 ----------------------------
@@ -288,6 +306,7 @@ function spawn_obj(obj) -- Spawn object a
   if success == true then
     pokemon_obj = obj.reload()
     pokemon_obj.interactable = false
+    saved_model = {model = pokemon_obj.getGUID()}
   else
     log("Error spawning assetbundle ".. obj_params.assetbundle)
   end
