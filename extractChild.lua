@@ -1,10 +1,14 @@
-function extractChild(element, children) -- Credit to dzikakulka. Extracts children/components easily. Modified by Skeeveo
+function extractChild(element, children) -- Credit to dzikakulka. Extracts children/components easily
+  logStyle("error", "Red")
   for _, name in ipairs(children) do
     if element.getChild(name) == nil then
-      log("Child does not exist: " .. name)
-      log("Available children:")
-      for x, _ in pairs(element.getChildren()) do
-        log(x)
+      log("Child does not exist: " .. name, " ", "error")
+      log(element.getChildren(), "Children available:", "error")
+      log(children, "Children selected:", "error")
+      if element.getName() then
+        error("Child does not exist in object '".. element.getName().. "' (see log.)")
+      else
+        error("Child does not exist in given object (see log.)")
       end
     end
     element = element.getChild(name)
