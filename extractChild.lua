@@ -1,15 +1,12 @@
 function extractChild(element, children) -- Credit to dzikakulka. Extracts children/components easily
+  assert(type(children) == "table", "children must be in table")
   logStyle("error", "Red")
   for _, name in ipairs(children) do
+    assert(type(name) == "string", "children names must be a string")
     if element.getChild(name) == nil then
-      log("Child does not exist: " .. name, " ", "error")
-      log(element.getChildren(), "Children available:", "error")
-      log(children, "Children selected:", "error")
-      if element.getName() then
-        error("Child does not exist in object '".. element.getName() .. "' (".. element.getGUID().. ")")
-      else
-        error("Child does not exist in given object (".. element.getGUID()..")")
-      end
+      log(element.getChildren(), "children available:", "error")
+      log(children, "children selected:", "error")
+      error("child does not exist: " .. name)
     end
     element = element.getChild(name)
   end
