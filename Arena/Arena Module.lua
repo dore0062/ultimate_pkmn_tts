@@ -79,9 +79,20 @@ p2_SWAP_ID = 1
 -------------------------------
 function extractChild(element, children) -- Credit to dzikakulka. Extracts children/components easily
   for _, name in ipairs(children) do
+    if element.getChild(name) == nil then
+      log("Child does not exist: " .. name)
+      log("Avaliable children:")
+      for x, _ in pairs(element.getChildren()) do
+        log(x)
+      end
+    end
     element = element.getChild(name)
   end
   return element
+end
+
+function firstToUpper(str) -- Capitalizes a word
+  return (str:gsub("^%l", string.upper))
 end
 
 -------------------------------
@@ -175,7 +186,7 @@ function start() -- Starts the game if both players are ready
 
     for i = 1, 2, 1 do -- Main loop
       local control = _G["p"..i.."_assetbundles"]["control_panel"]
-      local panel = extractChild(control, {'playerpanel(Clone)', 'panels', 'Left'})
+      local panel = extractChild(control, {'playerpanel Variant(Clone)', 'panels', 'Left'})
       local p = _G["p".. i .."_pokemon"][1]
 
       local CHP_sheets = extractChild(panel, {'statsPanel', 'CHP'})
@@ -230,7 +241,11 @@ end
 function setStats(panel, player)
   local type_image = extractChild(panel, {'statsPanel', 'typeImage', 'Image'}).getComponent("RectTransform")
   local pname = _G["p" .. player .. "_pokemon"][1].getTable("data").name
+  local p_panel = _G["p" .. player .. "_assetbundles"]["control_panel"]
   local type = database[pname]["type"]
+
+  p_panel.UI.setAttribute("name", "text", firstToUpper(pname))
+  p_panel.UI.setAttribute("name2", "text", firstToUpper(pname))
 
   type_image.set("localPosition", type_imagesheet[type])
 
@@ -245,16 +260,72 @@ function setStats(panel, player)
   end
 end
 
-function setAttacks(panel, player)
+function setAttacks(panel, player) -- Set ALL attacks
   local pname = _G["p" .. player .. "_pokemon"][1].getTable("data").name
+  local p_panel = _G["p" .. player .. "_assetbundles"]["control_panel"]
   local b = 0
+
+  for i = 1, 4, 1 do -- Reset the attacks
+    p_panel.UI.setAttribute('a'..i, "active", false)
+  end
+
   for i, x in pairs(database[pname]["attacks"]) do
+    if b == 0 then first_attack = i end
     b = b + 1
+    -- Setting it active
     local tpanel = extractChild(panel, {'attacksPanel', tostring(b)}).getComponent("RectTransform")
     local pos = tpanel.get("localPosition")
     pos["x"] = -0.00505
-    tpanel.set("localPosition",pos)
+    tpanel.set("localPosition", pos)
+
+    p_panel.UI.setAttribute('a'..b, "text", i )
+    p_panel.UI.setAttribute('a'..b, "active", true )
+    -- Setting the type
+    local ttype = extractChild(panel, {'attacksPanel', tostring(b), "type", "Image"}).getComponent("RectTransform")
+    ttype.set("localPosition", type_imagesheet[database[pname]["attacks"][i]["type"]])
   end
+
+  currentAttack(panel, player, first_attack)
+end
+
+function currentAttack(panel, player, attack)
+  local p_panel = _G["p" .. player .. "_assetbundles"]["control_panel"]
+  local pname = _G["p" .. player .. "_pokemon"][1].getTable("data").name
+  local type = database[pname]["attacks"][attack]["type"]
+
+  p_panel.UI.setAttribute("selected_attack", "text", attack)
+  p_panel.UI.setAttribute("selected_attack_type", "text", firstToUpper(type))
+  p_panel.UI.setAttribute("selected_attack_damage", "text", database[pname]["attacks"][attack]["damage"])
+  local n = 0
+
+  -- Energy required
+  for i = 1, 5, 1 do -- Reset all to nil
+    local energy = extractChild(panel, {'attackStats', 'stats', '3', 'title', tostring(i), 'Image'}).getComponent("RectTransform")
+    energy.set("localPosition", {900, 900, 0})
+  end
+
+  for b, a in pairs(database[pname]["attacks"][attack]["energy"]) do -- Set Energy
+    n = n + 1
+    local energy = extractChild(panel, {'attackStats', 'stats', '3', 'title', tostring(n), 'Image'}).getComponent("RectTransform")
+    energy.set("localPosition", type2_imagesheet[a])
+  end
+
+  -- Weak to
+  for i = 1, 3, 1 do
+    -- !!!!!!!!!!
+    if i == 1 then
+      local type_image = extractChild(panel, {'attackStats', 'weak', "1 ", 'Image'}).getComponent("RectTransform")
+    else
+      local type_image = extractChild(panel, {'attackStats', 'weak', tostring(i), 'Image'}).getComponent("RectTransform")
+    end
+    -- !!!!!!!!!! FIXES A ASSETBUNDLE ERROR, TEMPORARY PLEASE FIX ME
+    if weakto[type][i] then
+      type_image.set("localPosition", type_imagesheet[weakto[type][i]])
+    else
+      type_image.set("localPosition", {100, 100, 100})
+    end
+  end
+
 end
 
 -------------------------------
@@ -269,7 +340,7 @@ function swapStart(_, _, id)
     _G[player.."_SWAP_SELECT"] = false
     control_panel.AssetBundle.playTriggerEffect(0)
     local c = _G[player .."_assetbundles"]["control_panel"]
-    local selector = extractChild(c, {'playerpanel(Clone)', 'panels', 'Left', 'balls', 'selector'}).getComponent("RectTransform")
+    local selector = extractChild(c, {'playerpanel Variant(Clone)', 'panels', 'Left', 'balls', 'selector'}).getComponent("RectTransform")
     local pos = selector.get("localPosition")
     pos["x"] = swap_positions[_G[player.."_SWAP_ID"]]
     selector.set("localPosition", pos)
@@ -284,7 +355,7 @@ function swapHover(_, _, id)
     assert(type(player) == "string", "swapHover incorrectly initalized.")
 
     local c = _G[player .."_assetbundles"]["control_panel"]
-    local selector = extractChild(c, {'playerpanel(Clone)', 'panels', 'Left', 'balls', 'selector'}).getComponent("RectTransform")
+    local selector = extractChild(c, {'playerpanel Variant(Clone)', 'panels', 'Left', 'balls', 'selector'}).getComponent("RectTransform")
     local pos = selector.get("localPosition")
     pos["x"] = localPos
     selector.set("localPosition", pos)
@@ -361,6 +432,16 @@ type_imagesheet = {
   electric = {3.62, 3.47, 0},
   water = {3.62, 10.63, 0},
   grass = { - 3.53, - 3.49, 0},
+  fighting = { - 3.53, 3.56, 0}
+}
+
+type2_imagesheet = {
+  colorless = { - 13.9935, 14.0107, 0},
+  psychic = {0, - 9.36, 0},
+  fire = { - 13.9935, 4.6707, 0},
+  electric = {3.62, 3.47, 0},
+  water = {3.62, 10.63, 0},
+  grass = {0, 0, 0},
   fighting = { - 3.53, 3.56, 0}
 }
 
