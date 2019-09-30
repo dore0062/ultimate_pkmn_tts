@@ -6,9 +6,9 @@ function extractChild(element, children) -- Credit to dzikakulka. Extracts child
       log(element.getChildren(), "Children available:", "error")
       log(children, "Children selected:", "error")
       if element.getName() then
-        error("Child does not exist in object '".. element.getName().. "' (see log.)")
+        error("Child does not exist in object '".. element.getName() .. "' (".. element.getGUID().. ")")
       else
-        error("Child does not exist in given object (see log.)")
+        error("Child does not exist in given object (".. element.getGUID()..")")
       end
     end
     element = element.getChild(name)
