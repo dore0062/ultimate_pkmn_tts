@@ -2,7 +2,7 @@ function extractChild(element, children) -- Credit to dzikakulka. Extracts child
   for _, name in ipairs(children) do
     if element.getChild(name) == nil then
       log("Child does not exist: " .. name)
-      log("Avaliable children:")
+      log("Available children:")
       for x, _ in pairs(element.getChildren()) do
         log(x)
       end
