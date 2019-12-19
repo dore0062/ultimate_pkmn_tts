@@ -1,9 +1,0 @@
-<panel id="default" position="0 10 0" rotation="90 0 0">
-  <!-- <button height="149" width="264" position="0 60 0" image="Start" preserveAspect="True" onClick="95cfd8/ass"/> -->
-  <button image="edit" height="195" width="210" position="800 50 0" rotation="0 0 180" preserveAspect="True" onClick="95cfd8/optionsPanel"/>
-</panel>
-
-<panel id="options" position="0 8 0" rotation="90 0 0 " active="false">
-  <button height="83" width="87" position="0 86.6 0" rotation="0 0 180" image="estop" preserveAspect="True" onClick="95cfd8/estop"/>
-  <button height="83" width="87" position="0 2 0" rotation="0 0 180" image="back" preserveAspect="True" onClick="95cfd8/back"/>
-</panel>
