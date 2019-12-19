@@ -1,0 +1,76 @@
+#include !/mtgalaxy/data/scenes
+
+-- Global function for watching if a scene has been loaded
+GameloadWatch = function() return scene_loaded end
+
+--- Shows the fullscreen loading on/off
+-- Function to enable/disable the fullscreen load for switching between scenes or major loads
+-- @param show true/false
+function loadingScreen(show)
+  if show == true then
+    self.UI.show("loading")
+    self.UI.show("loading_panel")
+    loading_screen.AssetBundle.playLoopingEffect(0)
+  else
+    self.UI.hide("loading")
+    self.UI.hide("loading_panel")
+    loading_screen.AssetBundle.playLoopingEffect(1)
+  end
+end
+
+--- Loads a new scene with given objects
+-- Should only be STATIC WORLD OBJECTS and PREFABS that don't want the player to see (but we want to load.)
+-- @param objects table of objects to load
+-- @param true/false gamestart if this is the game starting up
+-- @param optional removeobjects table of objects to remove
+function loadScene(scene_table, gamestart, removeobjects)
+  scene_loaded = false
+  assert(type(scene_table) == "table", "Error in global: invalid scene to load in loadScene")
+  if removeobjects then assert(type(removeobjects) == "table", "Error in global: invalid table given for loadScene") end
+
+  self.UI.setAttribute("loading_percent", "percentage", "0")
+  if not gamestart == true then
+    loadingScreen(true)
+  end
+
+  total_objects_to_load = #scene_table.objects -- Total number of objects to load
+  done_loading = 0 -- Objects that are done loading
+
+  if removeobjects then
+    for x, d in pairs(removeobjects) do
+      Wait.Time(|| d.destruct(), 1)
+    end
+  end
+
+  if scene_table.playarea ~= Physics.play_area then
+    Physics.play_area = scene_table.playarea
+  end
+
+  for x, d in ipairs(scene_table.objects) do
+    spawnObject({
+      type = d.obtype,
+      position = d.bundle,
+      rotation = d.rotation,
+      scale = d.scale,
+      sound = false,
+      callback_function = function(obj) loadSceneCallback(obj, d.abundle) end
+    })
+  end
+end
+
+function loadSceneCallback(obj, bundle)
+  local function setPercentage()
+    done_loading = done_loading + 1
+    local percent = done_loading / total_objects_to_load * 100
+    self.UI.setAttribute("loading_percent", "percentage", tostring(percent))
+    if percent == 100 then scene_loaded = true Wait.time(function() loadingScreen(false) end, 2) end
+  end
+
+  obj.setCustomObject({assetbundle = bundle})
+  obj = obj.reload()
+  loaded = obj.spawning
+  obj.interactable = false
+  table.insert(scene_objects, obj)
+  local loadWatch = function() return loaded end
+  Wait.condition(setPercentage, loadWatch)
+end

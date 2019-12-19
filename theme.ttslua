@@ -1,0 +1,73 @@
+MASTERTRAINERTHEME = [[name Pokemon Master Trainer Galaxy Theme
+
+button_normal             #0669BF
+button_hover              #51A8F4
+button_pressed            #0785F2
+button_disabled           #0785F2
+button_highlight_a        #0785F2
+button_highlight_b        #51A8F4
+button_highlight_c        #F52D00
+button_neutral            #294C6B
+
+window_background         #307CBF
+control_background        #0669BF
+transparent_background    #0669BF37
+divider                   #F49944
+
+tab_normal                #033F73
+tab_active                #0089EA
+tab_strip                 #0089EA
+
+motif                     #0089EA
+motif_highlight_a         #00ADEE
+motif_highlight_b         #79CFE6
+splash                    #5EB759
+splash_highlight          #83D14E
+glow                      #000000
+
+context_menu_background   #4C4C4CDC
+context_menu_hover        #0669BF
+context_menu_text         #FFFFFF
+context_menu_highlight    #FF0000
+
+label                     #FFFFFF
+input_text_inactive       #0785F2
+input_text_active         #FFFFFF
+floating_text             #0669BF
+note_edit_text            #0669BF
+caret                     #0669BF
+selection                 #FFDF8D80
+
+tooltip_background        #151515E1
+tooltip_border            #FFFFFF
+tooltip_text              #FFFFFF
+tooltip_motif             #0089EA
+
+radio_button_background   #307CBF
+radio_button_pressed      #307CBF
+
+check_box_background      #0669BF
+check_box_pressed         #307CBF
+
+slider_normal             #294C6B
+slider_pressed            #0785F2
+slider_label              #0669BF
+
+chat_tab_background       #294C6B7F
+chat_tab_highlight        #2B46E7128
+
+console_output_background #000000E6
+console_output_controls   #000000
+console_input_background  #000000E6
+console_input_controls    #000000
+console_input_text        #FFFFFF
+
+lua_background            #554F87
+lua_text                  #C8C8C8
+lua_caret                 #0669BF
+lua_selection             #C8C8C880
+
+high                      #0669BF
+low                       #FFFFFF
+hover_highlight           #0669BF
+background_tint           #00000000]]

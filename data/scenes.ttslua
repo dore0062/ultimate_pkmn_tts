@@ -1,0 +1,14 @@
+main_menu = {
+  playarea = 0.23,
+  objects = {
+    {name = "Background", obtype = "custom_assetbundle", abundle = [[file:///C:\Users\Skeeto\Desktop\Pokemon Galaxy Trainer\Unity\Fixed_Engine\AssetBundles\title_screen.unity3d]], position = {0, 0, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},
+    {name = "Logo_animation", obtype = "custom_assetbundle", abundle = [[file:///C:\Users\Skeeto\Desktop\Pokemon Galaxy Trainer\Unity\Fixed_Engine\AssetBundles\logo_start_screen.unity3d]], position = {500, 500, 500}, rotation = {0, 0, 0}, scale = {1, 1, 1}}
+  }
+}
+
+battle_arena_130 = {
+  playarea = 0.23,
+  objects = {
+    {obtype = "custom_assetbundle", abundle = "http://cloud-3.steamusercontent.com/ugc/781868986608156886/7C7C8B79153C1A59576F99091FD2543CD3650801/", position = {0, 0, 0}, rotation = {0, 0, 0}, scale = {5, 5, 5}}
+  }
+}

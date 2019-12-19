@@ -1,0 +1,6 @@
+--- Sets the selected theme for all players
+function setTheme()
+  for _, player in ipairs(Player.getPlayers()) do
+    player.setUITheme(MASTERTRAINERTHEME)
+  end
+end

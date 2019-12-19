@@ -1,0 +1,68 @@
+--- Starts a new game after the scene has loaded
+function firstLoad()
+
+  new_game = getObjectFromGUID("49edc2")
+  changelog = getObjectFromGUID("ab1086")
+  options = getObjectFromGUID("38c20e")
+  credits = getObjectFromGUID("0dc88f")
+
+  -- Move modules off-map
+  options.setPosition({200, 200, 200})
+  credits.setPosition({200, 200, 200})
+  changelog.setPosition({200, 200, 200})
+  new_game.setPosition({200, 200, 200})
+  bgm_player.setPosition({200, 200, 200})
+
+  loadScene(main_menu, true)
+
+  -- Wait for scene to have loaded
+  Wait.condition(function()
+    if MUSIC == true then
+       Wait.time(|| bgm_player.AssetBundle.playLoopingEffect(1), 2)
+     end
+
+    Player.White.lookAt({position = { - 0.25, 5.0, 10.94}, pitch = 0, yaw = 180, distance = 0.01})
+
+    Wait.time(function()
+      Wait.time(||self.UI.setAttribute("debug_start", "active", "true"), 1)
+      scene_objects[2].AssetBundle.playLoopingEffect(1)
+    end, 3)
+   end, GameloadWatch)
+end
+
+function startScreen()
+  scene_objects[2].AssetBundle.playLoopingEffect(2)
+  self.UI.setAttribute("debug_start", "active", "false")
+  new_game.AssetBundle.playLoopingEffect(1)
+  options.AssetBundle.playLoopingEffect(1)
+  changelog.AssetBundle.playLoopingEffect(1)
+  credits.AssetBundle.playLoopingEffect(1)
+  Wait.time(|| self.UI.show("mainmenu"), 0.50)
+end
+
+-------------------------------
+-- Main Menu UI Functions
+-------------------------------
+function mainMenuAnimationEnter(_, _, x)
+  if x == "newgame" then
+    new_game.AssetBundle.playLoopingEffect(2)
+  elseif x == "changelog" then
+    changelog.AssetBundle.playLoopingEffect(2)
+  elseif x == "options" then
+    options.AssetBundle.playLoopingEffect(2)
+  elseif x == "credits" then
+    credits.AssetBundle.playLoopingEffect(2)
+  end
+end
+
+function mainMenuAnimationExit(_, _, x)
+  if x == "newgame" then
+    new_game.AssetBundle.playLoopingEffect(3)
+  elseif x == "changelog" then
+    changelog.AssetBundle.playLoopingEffect(3)
+  elseif x == "options" then
+    options.AssetBundle.playLoopingEffect(3)
+  elseif x == "credits" then
+    credits.AssetBundle.playLoopingEffect(3)
+  end
+end
