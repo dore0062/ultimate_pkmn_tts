@@ -1,0 +1,62 @@
+#include !/mtgalaxy/lua/theme
+#include !/mtgalaxy/lua/startup
+#include !/mtgalaxy/lua/scenemanager
+#include !/mtgalaxy/lua/utilities
+
+-------------------------------------------
+-- Todo list
+-------------------------------------------
+-- TODO Update the github
+-- TODO Update fonts
+-- TODO Couritine for camera
+-- TODO timeout for menu buttons
+-- TODO make default window
+-- TODO changelog stuff
+-------------------------------------------
+-- Debug options
+-------------------------------------------
+NOLOAD = false -- Prevents game from loading to commit permanent object saves if true
+MUSIC = false -- Does not play any music if false
+SCENETOLOAD = nil -- Table of scene to load automatically at start
+-------------------------------------------
+
+function onLoad()
+  loading_screen = getObjectFromGUID("d14923")
+  bgm_player = getObjectFromGUID("c23be9")
+  scene_objects = {} -- WARNING DO NOT KEEP ME
+
+  -- TODO add some functions for saving and loading at the end
+  if NOLOAD == false and not SCENETOLOAD then
+    firstLoad()
+    setTheme()
+  elseif SCENETOLOAD then
+    loadScene(SCENETOLOAD, false)
+    self.UI.hide("loading")
+    self.UI.hide("loading_panel")
+  else
+    self.UI.hide("loading")
+    self.UI.hide("loading_panel")
+  end
+end
+
+
+
+-- Starts a new game
+function startGame()
+  local function loaded()
+    self.UI.setAttribute("debug_start", "active", "false")
+    for _, player in ipairs(Player.getPlayers()) do
+      player.lookAt({
+        position = {0.37, 0, - 24.74},
+        pitch = 25,
+        yaw = 150,
+        distance = 50,
+      })
+    end
+  end
+
+  scene_objects[2].destruct() -- Delete early as it's not properly in the render queue
+  table.remove(scene_objects, 2)
+  loadScene(battle_arena_130, false, scene_objects)
+  Wait.condition(loaded, not GameloadWatch)
+end

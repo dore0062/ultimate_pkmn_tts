@@ -1,0 +1,17 @@
+<!-- Xml UI. See documentation: https://api.tabletopsimulator.com/ui/introUI/ -->
+<image id="loading" height="250%" width="250%" preserveAspect="true" image="full" hideAnimation="Shrink" showAnimation="Grow" animationDuration="0.60"/>
+<panel id="loading_panel" height="60" width="300" offsetXY="0 -190" hideAnimation="FadeOut" showAnimation="FadeIn" animationDuration="0.1">
+  <ProgressBar id="loading_percent" height="40" width="90%" fillImage="bar" image="" color="" preserveAspect="True"  showPercentageText="false" percentage="0"/>
+  <image image="bg" preserveAspect="true"/>
+</panel>
+
+<button id="debug_start" height="100%" width="100%" color="" onClick="startScreen" active="false"/>
+
+<panel id="mainmenu" height="35%" width="30%" offsetXY="0 -120" color="" active="false" visibility="Host">
+<VerticalLayout>
+<button id="newgame"  color="" onMouseEnter="mainMenuAnimationEnter" onMouseExit="mainMenuAnimationExit" onClick="mainMenuNewGame"/>
+<button id="changelog" color="" onMouseEnter="mainMenuAnimationEnter" onMouseExit="mainMenuAnimationExit" onClick=""/>
+<button id="options" color="" onMouseEnter="mainMenuAnimationEnter" onMouseExit="mainMenuAnimationExit" onClick=""/>
+<button id="credits" color="" onMouseEnter="mainMenuAnimationEnter" onMouseExit="mainMenuAnimationExit" onClick=""/>
+</VerticalLayout>
+</panel>
