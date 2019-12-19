@@ -1,4 +1,4 @@
-#include !/mtgalaxy/data/scenes
+#include !/mtgalaxy/main/data/scenes
 
 -- Global function for watching if a scene has been loaded
 GameloadWatch = function() return scene_loaded end
