@@ -5,7 +5,13 @@ function setTheme()
   end
 end
 
-function extractChild(element, children) -- Credit to dzikakulka. Extracts children/components easily
+-- Sets volume of volume table with specified volume
+function setVolume(volumetable, volume)
+
+end
+
+---Extracts a child element through a group of other elements
+function extractChild(element, children) -- Credit to dzikakulka, modified by Skeeveo. Extracts children/components easily
   assert(type(children) == "table", "children must be in table")
   logStyle("error", "Red")
   for _, name in ipairs(children) do

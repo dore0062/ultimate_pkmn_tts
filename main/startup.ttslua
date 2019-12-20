@@ -1,6 +1,5 @@
 --- Starts a new game after the scene has loaded
 function firstLoad()
-
   new_game = getObjectFromGUID("49edc2")
   changelog = getObjectFromGUID("ab1086")
   options = getObjectFromGUID("38c20e")
@@ -12,8 +11,9 @@ function firstLoad()
   changelog.setPosition({200, 200, 200})
   new_game.setPosition({200, 200, 200})
   bgm_player.setPosition({200, 200, 200})
-
   loadScene(main_menu, true)
+
+table.insert(BGM_VOLUME, extractChild(bgm_player, {"Cube(Clone)","bgm01"}).getComponent("AudioSource"))
 
   -- Wait for scene to have loaded
   Wait.condition(function()
@@ -48,7 +48,7 @@ function mainMenuLoop(x)
   credits.AssetBundle.playLoopingEffect(x)
 end
 
-
+-- Main menu
 function mainMenuAnimationEnter(_, _, x)
   if x == "newgame" then
     new_game.AssetBundle.playLoopingEffect(2)
@@ -73,6 +73,7 @@ function mainMenuAnimationExit(_, _, x)
   end
 end
 
+-- Options
 function mainMenuOptionsOpen()
   self.UI.show("optionsMenu")
   self.UI.hide("mainmenu")
