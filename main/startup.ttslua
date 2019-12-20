@@ -115,6 +115,7 @@ function optionsSetVolume(_,vol,id)
 end
 
 function mainMenuOptionsClose()
+  playSound(2)
   self.UI.hide("optionsMenu")
   Wait.time(|| self.UI.show("mainmenu"), 0.50)
   mainMenuLoop(1)
@@ -123,6 +124,7 @@ end
 
 -- Changelog
 function mainMenuChangelogOpen()
+  playSound(1)
   local function webCallback(returned)
     if returned.is_error == false then
       self.UI.setAttribute("changelogtext", "Text", returned.text)
@@ -138,6 +140,7 @@ function mainMenuChangelogOpen()
 end
 
 function mainMenuChangelogClose()
+  playSound(2)
   self.UI.hide("changelogmenu")
   Wait.time(|| self.UI.show("mainmenu"), 0.50)
   mainMenuLoop(1)
