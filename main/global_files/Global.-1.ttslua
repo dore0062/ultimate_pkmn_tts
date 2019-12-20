@@ -27,6 +27,7 @@ CAMERALOCK = false -- Whether the camera is locked
 function onLoad()
   loading_screen = getObjectFromGUID("d14923")
   bgm_player = getObjectFromGUID("c23be9")
+  fx_master = getObjectFromGUID("6462bd")
   scene_objects = {} -- WARNING DO NOT KEEP ME
 
   -- TODO add some functions for saving and loading at the end
@@ -45,20 +46,5 @@ end
 
 -- Starts a new game
 function startGame()
-  local function loaded()
-    self.UI.setAttribute("debug_start", "active", "false")
-    for _, player in ipairs(Player.getPlayers()) do
-      player.lookAt({
-        position = {0.37, 0, - 24.74},
-        pitch = 25,
-        yaw = 150,
-        distance = 50,
-      })
-    end
-  end
 
-  scene_objects[2].destruct() -- Delete early as it's not properly in the render queue
-  table.remove(scene_objects, 2)
-  loadScene(battle_arena_130, false, scene_objects)
-  Wait.condition(loaded, not GameloadWatch)
 end

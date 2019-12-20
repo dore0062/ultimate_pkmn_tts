@@ -12,6 +12,10 @@ function setVolume(volumetable, volume)
   end
 end
 
+function playSound(i)
+  fx_master.AssetBundle.playLoopingEffect(i)
+end
+
 ---Extracts a child element through a group of other elements
 function extractChild(element, children) -- Credit to dzikakulka, modified by Skeeveo. Extracts children/components easily
   assert(type(children) == "table", "children must be in table")
@@ -31,13 +35,16 @@ end
 -------------------------------
 -- Camera Functions
 -------------------------------
+-- Locks the camera into a position as best as it can
 function cameraLock(p, pi, y, d)
   local function cameraLockLoop()
-    Player.White.lookAt({position = p, pitch = pi, yaw = y, distance = d})
-      if CAMERALOCK == true then
-        Wait.time(cameraLockLoop, 0.0004)
+    for _, player in ipairs(Player.getPlayers()) do
+      player.lookAt({position = p, pitch = pi, yaw = y, distance = d})
+    end
+    if CAMERALOCK == true then
+      Wait.time(cameraLockLoop, 0.0009)
     end
   end
-CAMERALOCK = true
-cameraLockLoop()
+  CAMERALOCK = true
+  cameraLockLoop()
 end

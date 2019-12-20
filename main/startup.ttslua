@@ -11,9 +11,14 @@ function firstLoad()
   changelog.setPosition({200, 200, 200})
   new_game.setPosition({200, 200, 200})
   bgm_player.setPosition({200, 200, 200})
+  fx_master.setPosition({200, 200, 200})
   loadScene(main_menu, true)
 
 table.insert(BGM_VOLUME, extractChild(bgm_player, {"Cube(Clone)","bgm01"}).getComponent("AudioSource"))
+
+for x, d in pairs(extractChild(fx_master, {"FXMaster(Clone)"}).getChildren()) do
+  table.insert(FX_VOLUME, d.getComponent("AudioSource"))
+end
 
   -- Wait for scene to have loaded
   Wait.condition(function()
@@ -75,24 +80,65 @@ end
 
 -- New Game
 function mainMenuNewGame()
-  loadScene(main_menu, false)
+  local function loaded()
+    self.UI.setAttribute("debug_start", "active", "false")
+
+    for _, player in ipairs(Player.getPlayers()) do
+      player.lookAt({
+        position = {0.37, 0, - 24.74},
+        pitch = 25,
+        yaw = 150,
+        distance = 50,
+      })
+    end
+  end
+  CAMERALOCK = false
+  self.UI.hide("mainmenu")
+  mainMenuLoop(0)
+  scene_objects[2].destruct() -- Delete early as it's not properly in the render queue
+  table.remove(scene_objects, 2)
+  loadScene(battle_arena_130, false, scene_objects)
+  Wait.condition(loaded, not GameloadWatch)
 end
 
 -- Options
 function mainMenuOptionsOpen()
+  playSound(1)
   self.UI.show("optionsMenu")
   self.UI.hide("mainmenu")
   mainMenuLoop(0)
   scene_objects[2].AssetBundle.playLoopingEffect(0)
 end
 
+function optionsSetVolume(_,vol,id)
+ setVolume(id,vol)
+end
+
 function mainMenuOptionsClose()
   self.UI.hide("optionsMenu")
-  self.UI.show("mainmenu")
+  Wait.time(|| self.UI.show("mainmenu"), 0.50)
   mainMenuLoop(1)
   scene_objects[2].AssetBundle.playLoopingEffect(2)
 end
 
-function optionsSetVolume(_,vol,id)
- setVolume(id,vol)
+-- Changelog
+function mainMenuChangelogOpen()
+  local function webCallback(returned)
+    if returned.is_error == false then
+      self.UI.setAttribute("changelogtext", "Text", returned.text)
+    else
+      self.UI.setAttribute("changelogtext", "Text", "There was an error retrieving the latest changelog, please try again later.")
+    end
+  end
+
+  self.UI.show("changelogmenu")
+  self.UI.hide("mainmenu")
+  WebRequest.get("https://raw.githubusercontent.com/Skeeve2/ultimate_pkmn_tts/master/changelog", function(a) webCallback(a) end)
+  mainMenuLoop(0)
+end
+
+function mainMenuChangelogClose()
+  self.UI.hide("changelogmenu")
+  Wait.time(|| self.UI.show("mainmenu"), 0.50)
+  mainMenuLoop(1)
 end
