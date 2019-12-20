@@ -33,16 +33,22 @@ end
 function startScreen()
   scene_objects[2].AssetBundle.playLoopingEffect(2)
   self.UI.setAttribute("debug_start", "active", "false")
-  new_game.AssetBundle.playLoopingEffect(1)
-  options.AssetBundle.playLoopingEffect(1)
-  changelog.AssetBundle.playLoopingEffect(1)
-  credits.AssetBundle.playLoopingEffect(1)
+  mainMenuLoop(1)
   Wait.time(|| self.UI.show("mainmenu"), 0.50)
 end
 
 -------------------------------
 -- Main Menu UI Functions
 -------------------------------
+-- Play a looping effect on all main menu options
+function mainMenuLoop(x)
+  new_game.AssetBundle.playLoopingEffect(x)
+  options.AssetBundle.playLoopingEffect(x)
+  changelog.AssetBundle.playLoopingEffect(x)
+  credits.AssetBundle.playLoopingEffect(x)
+end
+
+
 function mainMenuAnimationEnter(_, _, x)
   if x == "newgame" then
     new_game.AssetBundle.playLoopingEffect(2)
@@ -65,4 +71,18 @@ function mainMenuAnimationExit(_, _, x)
   elseif x == "credits" then
     credits.AssetBundle.playLoopingEffect(3)
   end
+end
+
+function mainMenuOptionsOpen()
+  self.UI.show("optionsMenu")
+  self.UI.hide("mainmenu")
+  mainMenuLoop(0)
+  scene_objects[2].AssetBundle.playLoopingEffect(0)
+end
+
+function mainMenuOptionsClose()
+  self.UI.hide("optionsMenu")
+  self.UI.show("mainmenu")
+  mainMenuLoop(1)
+  scene_objects[2].AssetBundle.playLoopingEffect(2)
 end
