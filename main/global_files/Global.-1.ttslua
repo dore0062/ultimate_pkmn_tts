@@ -2,7 +2,6 @@
 #include !/mtgalaxy/lua/startup
 #include !/mtgalaxy/lua/scenemanager
 #include !/mtgalaxy/lua/utilities
-#include !/mtgalaxy/lua/data/misc_tables
 
 -------------------------------------------
 -- Todo list
@@ -22,7 +21,6 @@ SCENETOLOAD = nil -- Table of scene to load automatically at start
 -------------------------------------------
 
 function onLoad()
-  print(BGM_VOLUME)
   loading_screen = getObjectFromGUID("d14923")
   bgm_player = getObjectFromGUID("c23be9")
   scene_objects = {} -- WARNING DO NOT KEEP ME
@@ -40,6 +38,8 @@ function onLoad()
     self.UI.hide("loading_panel")
   end
 end
+
+
 
 -- Starts a new game
 function startGame()
