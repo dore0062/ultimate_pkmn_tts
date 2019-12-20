@@ -4,23 +4,24 @@
 #include !/mtgalaxy/main/utilities
 #include !/mtgalaxy/main/data/misc_tables
 
-
 -------------------------------------------
 -- Todo list
 -------------------------------------------
--- TODO Update fonts
--- TODO Couritine for camera
 -- TODO changelog stuff
--- TODO Make options back menu
--- TODO make options function
--- TODO make options actually work
--- TODO experiment with audiosource components
+
+-- TODO make scene manager delete things gosh darn it / reorganize it
+-- TODO make new game temporarily do something
+-- TODO ???? profit
 -------------------------------------------
 -- Debug options
 -------------------------------------------
 NOLOAD = false -- Prevents game from loading to commit permanent object saves if true
 MUSIC = false -- Does not play any music if false
 SCENETOLOAD = nil -- Table of scene to load automatically at start
+-------------------------------------------
+-- Global Variables
+-------------------------------------------
+CAMERALOCK = false -- Whether the camera is locked
 -------------------------------------------
 
 function onLoad()

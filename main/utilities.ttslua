@@ -7,7 +7,9 @@ end
 
 -- Sets volume of volume table with specified volume
 function setVolume(volumetable, volume)
-
+  for x, d in ipairs(_G[volumetable]) do
+    d.set("volume", tonumber(volume))
+  end
 end
 
 ---Extracts a child element through a group of other elements
@@ -24,4 +26,18 @@ function extractChild(element, children) -- Credit to dzikakulka, modified by Sk
     element = element.getChild(name)
   end
   return element
+end
+
+-------------------------------
+-- Camera Functions
+-------------------------------
+function cameraLock(p, pi, y, d)
+  local function cameraLockLoop()
+    Player.White.lookAt({position = p, pitch = pi, yaw = y, distance = d})
+      if CAMERALOCK == true then
+        Wait.time(cameraLockLoop, 0.0004)
+    end
+  end
+CAMERALOCK = true
+cameraLockLoop()
 end

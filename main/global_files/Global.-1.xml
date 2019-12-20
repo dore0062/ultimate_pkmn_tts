@@ -27,7 +27,7 @@
     <Row preferredHeight="128" tooltip="Changes in-game music volume." tooltipPosition="Left">
       <image image="optionmenu"/>
       <text class="left" text="Music Volume" />
-      <slider height="120%" handleImage="" handleColor="" offsetXY="175 0" value="0.75" width="65%" minValue="0" maxValue="1"/>
+      <slider id="BGM_VOLUME" onValueChanged="optionsSetVolume" height="120%" handleImage="" handleColor="" offsetXY="175 0" value="0.75" width="65%" minValue="0" maxValue="1"/>
     </Row>
     <Row preferredHeight="128">
       <image image="optionmenu"/>

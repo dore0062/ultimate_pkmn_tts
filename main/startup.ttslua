@@ -21,7 +21,7 @@ table.insert(BGM_VOLUME, extractChild(bgm_player, {"Cube(Clone)","bgm01"}).getCo
        Wait.time(|| bgm_player.AssetBundle.playLoopingEffect(1), 2)
      end
 
-    Player.White.lookAt({position = { - 0.25, 5.0, 10.94}, pitch = 0, yaw = 180, distance = 0.01})
+    cameraLock({-0.25, 5.0, 10.94}, 0, 180, 0.01)
 
     Wait.time(function()
       Wait.time(||self.UI.setAttribute("debug_start", "active", "true"), 1)
@@ -73,6 +73,11 @@ function mainMenuAnimationExit(_, _, x)
   end
 end
 
+-- New Game
+function mainMenuNewGame()
+  loadScene(main_menu, false)
+end
+
 -- Options
 function mainMenuOptionsOpen()
   self.UI.show("optionsMenu")
@@ -86,4 +91,8 @@ function mainMenuOptionsClose()
   self.UI.show("mainmenu")
   mainMenuLoop(1)
   scene_objects[2].AssetBundle.playLoopingEffect(2)
+end
+
+function optionsSetVolume(_,vol,id)
+ setVolume(id,vol)
 end
