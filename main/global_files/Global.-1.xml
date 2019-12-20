@@ -1,4 +1,9 @@
 <!-- Xml UI. See documentation: https://api.tabletopsimulator.com/ui/introUI/ -->
+<Defaults>
+<Text class="left" offsetXY="-460 0" fontSize="45" />
+<Text class="right" offsetXY="360 0" fontSize="45" alignment="MiddleLeft" />
+</Defaults>
+
 <image id="loading" height="250%" width="250%" preserveAspect="true" image="full" hideAnimation="Shrink" showAnimation="Grow" animationDuration="0.60"/>
 <panel id="loading_panel" height="60" width="300" offsetXY="0 -190" hideAnimation="FadeOut" showAnimation="FadeIn" animationDuration="0.1">
   <ProgressBar id="loading_percent" height="40" width="90%" fillImage="bar" image="" color="" preserveAspect="True"  showPercentageText="false" percentage="0"/>
@@ -11,7 +16,49 @@
 <VerticalLayout>
 <button id="newgame"  color="" onMouseEnter="mainMenuAnimationEnter" onMouseExit="mainMenuAnimationExit" onClick="mainMenuNewGame"/>
 <button id="changelog" color="" onMouseEnter="mainMenuAnimationEnter" onMouseExit="mainMenuAnimationExit" onClick=""/>
-<button id="options" color="" onMouseEnter="mainMenuAnimationEnter" onMouseExit="mainMenuAnimationExit" onClick=""/>
+<button id="options" color="" onMouseEnter="mainMenuAnimationEnter" onMouseExit="mainMenuAnimationExit" onClick="mainMenuOptionsOpen"/>
 <button id="credits" color="" onMouseEnter="mainMenuAnimationEnter" onMouseExit="mainMenuAnimationExit" onClick=""/>
 </VerticalLayout>
+</panel>
+
+<panel id="optionsMenu" height="1000" width="65%" active="false" showAnimation="Grow" hideAnimation="FadeOut" animationDuration="0.25">
+<VerticalScrollView height="700" width="100%" color="" scrollbarImage="" scrollbarBackgroundColor="Black" scrollSensitivity="50" >
+  <TableLayout cellSpacing="15" cellBackgroundColor="clear" autoCalculateHeight="1" padding="8 24 8 8">
+    <Row preferredHeight="128" tooltip="Changes in-game music volume." tooltipPosition="Left">
+      <image image="optionmenu"/>
+      <text class="left" text="Music Volume" />
+      <slider height="120%" handleImage="" handleColor="" offsetXY="175 0" value="0.75" width="65%" minValue="0" maxValue="1"/>
+    </Row>
+    <Row preferredHeight="128">
+      <image image="optionmenu"/>
+      <text class="left" text="FX Volume"/>
+      <slider height="120%" handleImage="" handleColor="" offsetXY="175 0" value="0.75" width="65%" minValue="0" maxValue="1"/>
+    </Row>
+    <Row preferredHeight="128">
+      <image image="optionmenu"/>
+      <text class="left" text="Option A" />
+    </Row>
+    <Row preferredHeight="128">
+      <image image="optionmenu"/>
+      <text class="left" text="Option A" />
+    </Row>
+    <Row preferredHeight="128">
+      <image image="optionmenu"/>
+      <text class="left" text="Option A" />
+    </Row>
+    <Row preferredHeight="128">
+      <image image="optionmenu"/>
+      <text class="left" text="Option A" />
+    </Row>
+    <Row preferredHeight="128">
+      <image image="optionmenu"/>
+      <text class="left" text="Option A" />
+    </Row>
+    <Row preferredHeight="128">
+      <image image="optionmenu"/>
+      <text class="left" text="Option A" />
+    </Row>
+  </TableLayout>
+</VerticalScrollView>
+<button height="50" width="200" offsetXY="-500 -400" onClick="mainMenuOptionsClose">Back</button>
 </panel>

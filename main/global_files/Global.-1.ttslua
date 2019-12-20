@@ -1,17 +1,20 @@
-#include !/mtgalaxy/lua/theme
-#include !/mtgalaxy/lua/startup
-#include !/mtgalaxy/lua/scenemanager
-#include !/mtgalaxy/lua/utilities
+#include !/mtgalaxy/main/theme
+#include !/mtgalaxy/main/startup
+#include !/mtgalaxy/main/scenemanager
+#include !/mtgalaxy/main/utilities
+#include !/mtgalaxy/main/data/misc_tables
+
 
 -------------------------------------------
 -- Todo list
 -------------------------------------------
--- TODO Update the github
 -- TODO Update fonts
 -- TODO Couritine for camera
--- TODO timeout for menu buttons
--- TODO make default window
 -- TODO changelog stuff
+-- TODO Make options back menu
+-- TODO make options function
+-- TODO make options actually work
+-- TODO experiment with audiosource components
 -------------------------------------------
 -- Debug options
 -------------------------------------------
@@ -38,8 +41,6 @@ function onLoad()
     self.UI.hide("loading_panel")
   end
 end
-
-
 
 -- Starts a new game
 function startGame()
