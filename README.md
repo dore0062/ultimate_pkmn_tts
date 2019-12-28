@@ -10,3 +10,6 @@
 
 ### Object scripts vs. Global
 In this project we use object scripts vs. global ones, this is so that the objects are considered modular and can be easily copy-pasted to other saves if players want to include them.
+
+## Want to help?
+Contact me on discord *bored all the time#7181* or https://steamcommunity.com/id/Skeeve8/ - always looking for people!
