@@ -19,7 +19,7 @@
 --------------------------------------------------------------------------
 
 -- The pokedex is a sandbox spawner for debugging and setting up custom teams.
--- It's state is always reset between sessions since it doesn't actually matter. 
+-- It's state is always reset between sessions since it doesn't actually matter.
 
 function onload(saved_data)
   -- self.interactable = false -- Move via gizmo tool. Disable to lock first. Pokedex should NEVER MOVE!!!

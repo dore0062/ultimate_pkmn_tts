@@ -1,8 +1,18 @@
 main_menu = {
   playarea = 0.23,
   objects = {
-    {name = "Background", obtype = "custom_assetbundle", abundle = [[file:///C:\Users\Skeeto\Desktop\Pokemon Galaxy Trainer\Unity\Fixed_Engine\AssetBundles\title_screen.unity3d]], position = {0, 0, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},
-    {name = "Logo_animation", obtype = "custom_assetbundle", abundle = [[file:///C:\Users\Skeeto\Desktop\Pokemon Galaxy Trainer\Unity\Fixed_Engine\AssetBundles\logo_start_screen.unity3d]], position = {500, 500, 500}, rotation = {0, 0, 0}, scale = {1, 1, 1}}
+    {name = "Background", interactable = false, obtype = "custom_assetbundle", abundle = [[file:///C:\Users\Skeeto\Desktop\Pokemon Galaxy Trainer\Unity\Fixed_Engine\AssetBundles\title_screen.unity3d]], position = {0, 0, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},
+    {name = "Logo_animation", interactable = false, obtype = "custom_assetbundle", abundle = [[file:///C:\Users\Skeeto\Desktop\Pokemon Galaxy Trainer\Unity\Fixed_Engine\AssetBundles\logo_start_screen.unity3d]], position = {500, 500, 500}, rotation = {0, 0, 0}, scale = {1, 1, 1}}
+  }
+}
+
+battle_simulator = {
+  playarea = 0.30,
+  objects = {
+    {obtype = "custom_assetbundle", interactable = false, abundle = [[file:///C:\Users\Skeeto\Desktop\Pokemon Galaxy Trainer\Unity\Fixed_Engine\AssetBundles\beach.unity3d]], position = {0, 1.5, 0}, rotation = {0, 0, 0}, scale = {8, 8, 8}},
+    {varname = "pfab1", script = "PFAB_SCRIPT", interactable = false, obtype = "custom_assetbundle", abundle = [[file:///C:\Users\Skeeto\Desktop\Pokemon Galaxy Trainer\Unity\Fixed_Engine\AssetBundles\pfab2.unity3d]], position = {30.36, 1.48, 0}, rotation = {0, -90, 0}, scale = {1, 1, 1}},
+    {varname = "pfab2", script = "PFAB_SCRIPT", interactable = true, obtype = "custom_assetbundle", abundle = [[file:///C:\Users\Skeeto\Desktop\Pokemon Galaxy Trainer\Unity\Fixed_Engine\AssetBundles\pfab2.unity3d]], position = {-30.36, 1.48, 0}, rotation = {0, 90, 0}, scale = {1, 1, 1}},
+    -- {varname = "camera_ex", interactable = false, obtype = "custom_assetbundle", abundle = [[file:///C:\Users\Skeeto\Desktop\Pokemon Galaxy Trainer\Unity\Fixed_Engine\AssetBundles\camera_experiment.unity3d]], position = {0, 0, -40}, rotation = {0, 0, 0}, scale = {1, 1, 1}}
   }
 }
 

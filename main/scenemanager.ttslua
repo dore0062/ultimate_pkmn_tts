@@ -1,5 +1,7 @@
 #include !/mtgalaxy/main/data/scenes
 
+-- This file manages scene loading, which are mini-saves to switch between boards.
+
 -- Global function for watching if a scene has been loaded
 GameloadWatch = function() return scene_loaded end
 
@@ -49,16 +51,16 @@ function loadScene(scene_table, gamestart, removeobjects)
   for x, d in ipairs(scene_table.objects) do
     spawnObject({
       type = d.obtype,
-      position = d.bundle,
+      position = d.position,
       rotation = d.rotation,
       scale = d.scale,
       sound = false,
-      callback_function = function(obj) loadSceneCallback(obj, d.abundle) end
+      callback_function = function(obj) loadSceneCallback(obj, d.abundle, d.varname, d.interactable, d.script) end
     })
   end
 end
 
-function loadSceneCallback(obj, bundle)
+function loadSceneCallback(obj, bundle, name, interactable, script)
   local function setPercentage()
     done_loading = done_loading + 1
     local percent = done_loading / total_objects_to_load * 100
@@ -69,7 +71,16 @@ function loadSceneCallback(obj, bundle)
   obj.setCustomObject({assetbundle = bundle})
   obj = obj.reload()
   loaded = obj.spawning
-  obj.interactable = false
+
+  if interactable == false then
+    obj.interactable = false
+  end
+
+  if script then
+    obj.setLuaScript(_G[script])
+  end
+
+  if name then _G[name] = obj end -- Set an object reference if name
   table.insert(scene_objects, obj)
   local loadWatch = function() return loaded end
   Wait.condition(setPercentage, loadWatch)

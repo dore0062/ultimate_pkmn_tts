@@ -1,0 +1,81 @@
+PFAB_SCRIPT = [[
+function onLoad()
+  ballzone = getObjectFromGUID("ef262a")
+  ballsinzone = {}
+  selectedballs = {{slot=false},{slot=false},{slot=false},{slot=false},{slot=false}, {slot=false}}
+  -- Ball coordinates, these are the LOCAL COORDINATES to the slots. Must be precise since balls are small
+  ball_positions = {{1.44095, 1.72622, 1.51701}, {0.95651, 1.69791, 1.94585}, {0.35313, 1.64010, 2.22299}, { - 0.36583, 1.70543, 2.23058}, { - 0.965524, 1.70518, 1.94761}, { - 1.45041, 1.71856, 1.51634}}
+end
+
+function onObjectEnterScriptingZone(zone, enter_object)
+  if zone == ballzone and enter_object.getName() == "Pokeball" then
+    table.insert(ballsinzone, enter_object)
+  end
+end
+
+function onObjectLeaveScriptingZone(zone, leave_object)
+  if zone == ballzone and leave_object.getName() == "Pokeball" then
+    for x, d in pairs(ballsinzone) do
+      if leave_object == d then
+        table.remove(ballsinzone, x)
+      end
+    end
+  end
+end
+
+function onObjectDrop(_, dropped_object)
+  for x, d in pairs(ballsinzone) do
+    if dropped_object == d then
+      for c, l in ipairs(selectedballs) do
+        if l.slot == false then
+          l.object = dropped_object
+          l.slot = true
+          setScaleSmooth(dropped_object, 0.25, 0.2)
+          local rot = self.getRotation()
+          dropped_object.setPositionSmooth(self.PositionToWorld(ball_positions[c]), false)
+          dropped_object.setRotationSmooth(rot, false, true)
+
+          -- Prevents the pokeball from accidentally leaving early outside of objectPickup
+          local watch = function() return dropped_object.resting end -- Do not watch the setpossmooth because the ball technically further because of the scale being set
+          Wait.condition(|| dropped_object.jointTo(self, {["type"] = "Fixed", ["collision"] = true, ["break_force"] = 1000.0, ["break_torgue"] = 1000.0, }), watch, 15)
+          return nil
+        end
+      end
+    end
+  end
+end
+
+function onObjectPickUp(_, pickup_object)
+  for x, d in ipairs(selectedballs) do
+    if pickup_object == d.object then
+      d.object = nil
+      d.slot = false
+      pickup_object.jointTo()
+      setScaleSmooth(pickup_object, 1, 0.2)
+    end
+  end
+end
+
+function setScaleSmooth(object, tonum, length) -- Smoothly sets a scale
+  --Coroutine
+  function coroutine_setScaleSmooth()
+    local time_start = os.time()
+    local start = object.getScale().x
+
+    while os.time() <= time_start + length do
+      if length > 0 then
+        local time = os.time() - time_start
+        local steppedScale = (tonum - start) * time / length + start
+        object.setScale({steppedScale, steppedScale, steppedScale})
+        coroutine.yield(0)
+      end
+    end
+    object.setScale({tonum, tonum, tonum})
+    coroutine.yield(0)
+    return 1
+  end
+  --
+
+  startLuaCoroutine(self, "coroutine_setScaleSmooth")
+end
+]]

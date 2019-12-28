@@ -1,4 +1,5 @@
---- Starts a new game after the scene has loaded
+-- This file includes functions for managing the main menu and the "start" of the game. (The initial first load)
+
 function firstLoad()
   new_game = getObjectFromGUID("49edc2")
   changelog = getObjectFromGUID("ab1086")
@@ -12,6 +13,7 @@ function firstLoad()
   new_game.setPosition({200, 200, 200})
   bgm_player.setPosition({200, 200, 200})
   fx_master.setPosition({200, 200, 200})
+  scene_selection.setPosition({200,200,200})
   loadScene(main_menu, true)
 
 table.insert(BGM_VOLUME, extractChild(bgm_player, {"Cube(Clone)","bgm01"}).getComponent("AudioSource"))
@@ -80,25 +82,34 @@ end
 
 -- New Game
 function mainMenuNewGame()
-  local function loaded()
-    self.UI.setAttribute("debug_start", "active", "false")
+self.UI.show("loading")
+self.UI.show("sceneselect")
+scene_selection.AssetBundle.playLoopingEffect(1)
+self.UI.hide("mainmenu")
+mainMenuLoop(0)
+scene_objects[2].AssetBundle.playLoopingEffect(0)
 
-    for _, player in ipairs(Player.getPlayers()) do
-      player.lookAt({
-        position = {0.37, 0, - 24.74},
-        pitch = 25,
-        yaw = 150,
-        distance = 50,
-      })
-    end
-  end
-  CAMERALOCK = false
-  self.UI.hide("mainmenu")
-  mainMenuLoop(0)
-  scene_objects[2].destruct() -- Delete early as it's not properly in the render queue
-  table.remove(scene_objects, 2)
-  loadScene(battle_arena_130, false, scene_objects)
-  Wait.condition(loaded, not GameloadWatch)
+  -- local function loaded()
+  --   self.UI.setAttribute("debug_start", "active", "false")
+  --
+  --   for _, player in ipairs(Player.getPlayers()) do
+  --     player.lookAt({
+  --       position = {0.37, 0, - 24.74},
+  --       pitch = 25,
+  --       yaw = 150,
+  --       distance = 50,
+  --     })
+  --   end
+  -- end
+  -- CAMERALOCK = false
+  --
+  -- self.UI.hide("mainmenu")
+  -- mainMenuLoop(0)
+  -- scene_objects[2].destruct() -- Delete early as it's not properly in the render queue
+  --
+  -- table.remove(scene_objects, 2)
+  -- loadScene(battle_arena_130, false, scene_objects)
+  -- Wait.condition(loaded, GameloadWatch)
 end
 
 -- Options
@@ -127,7 +138,7 @@ function mainMenuChangelogOpen()
   playSound(1)
   local function webCallback(returned)
     if returned.is_error == false then
-      self.UI.setAttribute("changelogtext", "Text", returned.text)
+      self.UI.setAttribute("changelogtext", "Text", "Save version: ".. SAVEVERSION .. "\n" .. returned.text)
     else
       self.UI.setAttribute("changelogtext", "Text", "There was an error retrieving the latest changelog, please try again later.")
     end
@@ -144,4 +155,26 @@ function mainMenuChangelogClose()
   self.UI.hide("changelogmenu")
   Wait.time(|| self.UI.show("mainmenu"), 0.50)
   mainMenuLoop(1)
+end
+
+-- Scene Selection
+-- When
+function ssMenuNav(_,_,id)
+if id == "ssright" then
+  scene_selection.AssetBundle.playLoopingEffect(2)
+else
+  scene_selection.AssetBundle.playLoopingEffect(3)
+end
+end
+
+function ssMenuBack()
+  local function wait()
+    Wait.time(|| self.UI.show("mainmenu"), 0.50)
+    mainMenuLoop(1)
+    scene_objects[2].AssetBundle.playLoopingEffect(2)
+  end
+  self.UI.hide("loading")
+  self.UI.hide("sceneselect")
+  scene_selection.AssetBundle.playLoopingEffect(0)
+  Wait.time(wait, 0.50)
 end

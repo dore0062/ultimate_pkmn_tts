@@ -1,2 +1,3 @@
+-- Misc global table variables to save.
 BGM_VOLUME = {}
 FX_VOLUME = {}
