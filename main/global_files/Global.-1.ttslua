@@ -2,13 +2,13 @@
 #include !/mtgalaxy/main/startup
 #include !/mtgalaxy/main/scenemanager
 #include !/mtgalaxy/main/utilities
+#include !/mtgalaxy/main/object_scripts/pfab
 #include !/mtgalaxy/main/data/misc_tables
 
 -------------------------------------------
 -- Todo list
 -------------------------------------------
 -- TODO changelog stuff
-
 -- TODO make scene manager delete things gosh darn it / reorganize it
 -- TODO make new game temporarily do something
 -- TODO ???? profit
@@ -17,10 +17,11 @@
 -------------------------------------------
 NOLOAD = false -- Prevents game from loading to commit permanent object saves if true
 MUSIC = false -- Does not play any music if false
-SCENETOLOAD = nil -- Table of scene to load automatically at start
+SCENETOLOAD = battle_simulator -- Table of scene to load automatically at start
 -------------------------------------------
 -- Global Variables
 -------------------------------------------
+SAVEVERSION = 0.001
 CAMERALOCK = false -- Whether the camera is locked
 -------------------------------------------
 
@@ -28,6 +29,7 @@ function onLoad()
   loading_screen = getObjectFromGUID("d14923")
   bgm_player = getObjectFromGUID("c23be9")
   fx_master = getObjectFromGUID("6462bd")
+  scene_selection = getObjectFromGUID("36536e")
   scene_objects = {} -- WARNING DO NOT KEEP ME
 
   -- TODO add some functions for saving and loading at the end
@@ -36,15 +38,22 @@ function onLoad()
     setTheme()
   elseif SCENETOLOAD then
     loadScene(SCENETOLOAD, false)
+    Wait.condition(function() Wait.time(function()
+      if camera_ex then camera_ex.AssetBundle.playLoopingEffect(1) end
+
+      anim_test = extractChild(pfab1, {"pfab2(Clone)","holotop","angler","Canvas","Mask","Attacks","1","highlight"})
+      -- for x, d in pairs(anim_test.getComponents()) do
+      --   print(x, d)
+      -- end
+      for x, d in pairs(anim_test.getComponent("CanvasRenderer").getVars()) do
+        print(x, d)
+      end
+
+    end, 0.75) end, GameloadWatch) -- Insert any debug options after sceneload here
     self.UI.hide("loading")
     self.UI.hide("loading_panel")
   else
     self.UI.hide("loading")
     self.UI.hide("loading_panel")
   end
-end
-
--- Starts a new game
-function startGame()
-
 end

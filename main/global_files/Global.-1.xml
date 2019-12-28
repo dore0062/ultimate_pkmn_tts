@@ -69,9 +69,15 @@
 <!-- Changelog -->
 <panel id="changelogmenu" height="500" width="65%" offsetXY ="0 -200" active="false">
   <VerticalScrollView color="" scrollbarImage="" scrollbarBackgroundColor="Black" scrollSensitivity="50" >
-    <panel color="rgba(102, 102, 102, 0.75)" height="1000" padding="5 5 5 5">
+    <panel color="rgba(102, 102, 102, 0.75)" height="1000" padding="10 10 10 10">
       <text id="changelogtext" alignment="UpperLeft" text="Could not load changelog. "></text>
     </panel>
   </VerticalScrollView>
   <button height="50" width="200" offsetXY="0 -295" onClick="mainMenuChangelogClose">Back</button>
+</panel>
+
+<panel id="sceneselect" active="false">
+<panel id="ssright" height="200" width="100" color="" offsetXY="200 40" onClick="ssMenuNav"/>
+<panel id="ssleft" height="200" width="100" color="" offsetXY="-200 40" onClick="ssMenuNav"/>
+<button height="50" width="100" offsetXY="-200 -200" onclick="ssMenuBack"/>
 </panel>
