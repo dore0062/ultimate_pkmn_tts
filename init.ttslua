@@ -1,0 +1,26 @@
+#include pokemon_database
+-- This file handles globals across all files
+local Gmt = {}
+Gmt.__index = Gmt
+
+function Gmt:setLogStyles() -- For some reason log can only use player colors, fix if it's ever fixed.
+  logStyle("warning", "Yellow")
+  logStyle("info", "Teal")
+  logStyle("error", "Red")
+  logStyle("table", "Blue")
+end
+
+function Gmt:log(message, type, fname, guid)
+  if guid == "-1" then
+    guid = "Global"
+  end
+  if type == "warning" then
+    log("PKMNMTG (".. guid ..") [".. fname .."()] WARNING: ".. message, "", type)
+  elseif type == "info" then
+    log("PKMNMTG (".. guid ..") [".. fname .."()] INFO: ".. message, "", type)
+  elseif type == "error" then
+    log("PKMNMTG (".. guid ..") [".. fname .."()] ERROR: ".. message, "", type)
+  else
+    log("Log type not found (" .. fname .. ")")
+  end
+end
