@@ -2,10 +2,10 @@
   gmtD = {}
 
   gmtD.DAMAGE = {
-   SE   = 1.50,
-   NO   = 1,
-   CRIT = 2,
-   NE   = 0.50
+   SE   = 1.50, -- Super effective
+   NO   = 1, -- Normal
+   CRIT = 2, -- Critical
+   NE   = 0.50 -- Not Effective
   }
 
   -- Resistance types
