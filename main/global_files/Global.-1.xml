@@ -63,6 +63,7 @@
     </Row>
   </TableLayout>
 </VerticalScrollView>
+<text alignment="UpperCenter" fontsize="20" offsetXY="0 -120" color="White">Options in this menu are global to all players.</text>
 <button height="50" width="200" offsetXY="-500 -400" onClick="mainMenuOptionsClose">Back</button>
 </panel>
 
