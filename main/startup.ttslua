@@ -1,6 +1,6 @@
 -- This file includes functions for managing the main menu and the "start" of the game. (The initial first load)
 
-function firstLoad()
+function firstLoad() -- TODO These should be loaded from the scene manager EXCEPT options, which is always active
   new_game = getObjectFromGUID("49edc2")
   changelog = getObjectFromGUID("ab1086")
   options = getObjectFromGUID("38c20e")
@@ -28,7 +28,7 @@ end
        Wait.time(|| bgm_player.AssetBundle.playLoopingEffect(1), 2)
      end
 
-    cameraLock({-0.25, 5.0, 10.94}, 0, 180, 0.01)
+    cameraLock({-0.25, 2.0, 10.94}, 0, 180, 0.01) -- Where the camera is locked to. One day make this animated.
 
     Wait.time(function()
       Wait.time(||self.UI.setAttribute("debug_start", "active", "true"), 1)
@@ -82,34 +82,15 @@ end
 
 -- New Game
 function mainMenuNewGame()
-self.UI.show("loading")
-self.UI.show("sceneselect")
-scene_selection.AssetBundle.playLoopingEffect(1)
-self.UI.hide("mainmenu")
+Wait.time(function()
+scene_objects[4].AssetBundle.playLoopingEffect(1)
+scene_objects[3].AssetBundle.playLoopingEffect(1)
 mainMenuLoop(0)
+self.UI.hide("mainmenu")
+end, 0.50)
 scene_objects[2].AssetBundle.playLoopingEffect(0)
+scene_objects[5].AssetBundle.playLoopingEffect(1)
 
-  -- local function loaded()
-  --   self.UI.setAttribute("debug_start", "active", "false")
-  --
-  --   for _, player in ipairs(Player.getPlayers()) do
-  --     player.lookAt({
-  --       position = {0.37, 0, - 24.74},
-  --       pitch = 25,
-  --       yaw = 150,
-  --       distance = 50,
-  --     })
-  --   end
-  -- end
-  -- CAMERALOCK = false
-  --
-  -- self.UI.hide("mainmenu")
-  -- mainMenuLoop(0)
-  -- scene_objects[2].destruct() -- Delete early as it's not properly in the render queue
-  --
-  -- table.remove(scene_objects, 2)
-  -- loadScene(battle_arena_130, false, scene_objects)
-  -- Wait.condition(loaded, GameloadWatch)
 end
 
 -- Options

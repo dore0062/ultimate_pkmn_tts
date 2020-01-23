@@ -6,11 +6,18 @@
 #include !/mtgalaxy/main/data/misc_tables
 
 -------------------------------------------
+-- Todo list
+-------------------------------------------
+-- TODO changelog stuff
+-- TODO make scene manager delete things gosh darn it / reorganize it
+-- TODO make new game temporarily do something
+-- TODO ???? profit
+-------------------------------------------
 -- Debug options
 -------------------------------------------
 NOLOAD = false -- Prevents game from loading to commit permanent object saves if true
 MUSIC = false -- Does not play any music if false
-SCENETOLOAD = battle_simulator -- Table of scene to load automatically at start
+SCENETOLOAD = nil -- Table of scene to load automatically at start
 -------------------------------------------
 -- Global Variables
 -------------------------------------------
