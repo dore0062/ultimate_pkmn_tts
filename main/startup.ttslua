@@ -82,26 +82,26 @@ end
 
 -- New Game
 function mainMenuNewGame()
+self.UI.hide("mainmenu")
 Wait.time(function()
+scene_objects[2].AssetBundle.playLoopingEffect(0) -- Logo off
 scene_objects[4].AssetBundle.playLoopingEffect(1) -- BG
 scene_objects[3].AssetBundle.playLoopingEffect(1) -- Foreground
 mainMenuLoop(0)
-self.UI.show("menuSelection")
-self.UI.hide("mainmenu")
+Wait.time(|| self.UI.show("menuSelection"), 0.50)
 end, 0.50)
 Wait.time(|| scene_objects[5].AssetBundle.playLoopingEffect(0), 1) -- Reset screen wipe state
-scene_objects[2].AssetBundle.playLoopingEffect(0) -- Logo off
 scene_objects[5].AssetBundle.playLoopingEffect(1) -- Screen wipe
 end
 
 function mainMenuNewGameBack()
+  self.UI.hide("menuSelection")
 Wait.time(function()
 scene_objects[4].AssetBundle.playLoopingEffect(0) -- BG
 scene_objects[3].AssetBundle.playLoopingEffect(0) -- Foreground
-scene_objects[2].AssetBundle.playLoopingEffect(2) -- Logo on
+scene_objects[2].AssetBundle.playLoopingEffect(4) -- Logo on
 mainMenuLoop(1)
-self.UI.hide("menuSelection")
-self.UI.show("mainmenu")
+Wait.time(|| self.UI.show("mainmenu"), 0.50)
 end, 0.50)
 Wait.time(|| scene_objects[5].AssetBundle.playLoopingEffect(0), 1) -- Reset screen wipe state
 scene_objects[5].AssetBundle.playLoopingEffect(1) -- Screen wipe
@@ -124,8 +124,8 @@ function mainMenuOptionsClose()
   playSound(2)
   self.UI.hide("optionsMenu")
   Wait.time(|| self.UI.show("mainmenu"), 0.50)
+  Wait.time(|| scene_objects[2].AssetBundle.playLoopingEffect(4), 0.10)
   mainMenuLoop(1)
-  scene_objects[2].AssetBundle.playLoopingEffect(2)
 end
 
 -- Changelog
