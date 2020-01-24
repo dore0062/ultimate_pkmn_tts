@@ -28,7 +28,7 @@ end
        Wait.time(|| bgm_player.AssetBundle.playLoopingEffect(1), 2)
      end
 
-    cameraLock({-0.25, 2.0, 10.94}, 0, 180, 0.01) -- Where the camera is locked to. One day make this animated.
+    cameraLock({0, 2.0, 10.94}, 0, 180, 0.01) -- Where the camera is locked to. One day make this animated.
 
     Wait.time(function()
       Wait.time(||self.UI.setAttribute("debug_start", "active", "true"), 1)

@@ -2,9 +2,9 @@
   gmtD = {}
 
   gmtD.DAMAGE = {
-   SE   = 1.50, -- Super effective
+   SE   = 1.30, -- Super effective
    NO   = 1, -- Normal
-   CRIT = 2, -- Critical
+   CRIT = 1.60, -- Critical
    NE   = 0.50 -- Not Effective
   }
 
@@ -36,7 +36,7 @@
     },
     ["water"]    = {
       ["normal"]   = gmtD.DAMAGE.NO,
-      ["fire"]     = gmtD.DAMAGE.NE,
+      ["fire"]     = gmtD.DAMAGE.SE,
       ["grass"]    = gmtD.DAMAGE.SE,
       ["water"]    = gmtD.DAMAGE.NE,
       ["fighting"] = gmtD.DAMAGE.NE,
@@ -61,7 +61,7 @@
   }
 
   -- This is a global backup of the pkmn DB
-  gmtD.JSON = [[{
+  gmtD.JSON = JSON.decode([[{
     "database_version" : 0.11,
     "pkmn" : {
       "charmander" : {
@@ -113,4 +113,4 @@
       }
     }
   }
-  ]]
+  ]])
