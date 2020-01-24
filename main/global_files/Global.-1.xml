@@ -82,3 +82,7 @@
 <panel id="ssleft" height="200" width="100" color="" offsetXY="-200 40" onClick="ssMenuNav"/>
 <button height="50" width="100" offsetXY="-200 -200" onclick="ssMenuBack"/>
 </panel>
+
+<panel id="menuSelection" active="false">
+  <button color="" rectAlignment="MiddleRight" height="150" width="400" offsetXY="0 420" onClick="mainMenuNewGameBack"/>
+</panel>

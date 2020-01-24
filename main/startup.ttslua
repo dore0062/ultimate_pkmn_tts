@@ -1,5 +1,5 @@
 -- This file includes functions for managing the main menu and the "start" of the game. (The initial first load)
-
+-- TODO polish!
 function firstLoad() -- TODO These should be loaded from the scene manager EXCEPT options, which is always active
   new_game = getObjectFromGUID("49edc2")
   changelog = getObjectFromGUID("ab1086")
@@ -83,14 +83,28 @@ end
 -- New Game
 function mainMenuNewGame()
 Wait.time(function()
-scene_objects[4].AssetBundle.playLoopingEffect(1)
-scene_objects[3].AssetBundle.playLoopingEffect(1)
+scene_objects[4].AssetBundle.playLoopingEffect(1) -- BG
+scene_objects[3].AssetBundle.playLoopingEffect(1) -- Foreground
 mainMenuLoop(0)
+self.UI.show("menuSelection")
 self.UI.hide("mainmenu")
 end, 0.50)
-scene_objects[2].AssetBundle.playLoopingEffect(0)
-scene_objects[5].AssetBundle.playLoopingEffect(1)
+Wait.time(|| scene_objects[5].AssetBundle.playLoopingEffect(0), 1) -- Reset screen wipe state
+scene_objects[2].AssetBundle.playLoopingEffect(0) -- Logo off
+scene_objects[5].AssetBundle.playLoopingEffect(1) -- Screen wipe
+end
 
+function mainMenuNewGameBack()
+Wait.time(function()
+scene_objects[4].AssetBundle.playLoopingEffect(0) -- BG
+scene_objects[3].AssetBundle.playLoopingEffect(0) -- Foreground
+scene_objects[2].AssetBundle.playLoopingEffect(2) -- Logo on
+mainMenuLoop(1)
+self.UI.hide("menuSelection")
+self.UI.show("mainmenu")
+end, 0.50)
+Wait.time(|| scene_objects[5].AssetBundle.playLoopingEffect(0), 1) -- Reset screen wipe state
+scene_objects[5].AssetBundle.playLoopingEffect(1) -- Screen wipe
 end
 
 -- Options
