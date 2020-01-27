@@ -5,11 +5,11 @@
 main_menu = {
   playarea = 0.23,
   objects = {
-    {name = "Background", interactable = false, obtype = "custom_assetbundle", abundle = [[file:///C:/Users/Skeeto/Desktop/Pokemon Galaxy Trainer/Unity/Fixed_Engine/AssetBundles/title_screen.unity3d]], position = {0, 0, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},
+    {name = "Background", interactable = false, obtype = "custom_assetbundle", abundle = [[https://firebasestorage.googleapis.com/v0/b/mmbndb-dca4f.appspot.com/o/Assetbundles%2Ftitle_screen.unity3d?alt=media]], position = {0, 0, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},
     {name = "Logo_animation", interactable = false, obtype = "custom_assetbundle", abundle = [[file:///C:\Users\Skeeto\Desktop\Pokemon Galaxy Trainer\Unity\Fixed_Engine\AssetBundles\logo_start_screen.unity3d]], position = {500, 500, 500}, rotation = {0, 0, 0}, scale = {1, 1, 1}},
-    {name = "startupbg1", interactable = false, obtype = "custom_assetbundle", abundle = [[file:///C:\Users\Skeeto\Desktop\Pokemon Galaxy Trainer\Unity\Fixed_Engine\AssetBundles\game_select.unity3d]], position = {500, 500, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},
-    {name = "startupbuttons", interactable = false, obtype = "custom_assetbundle", abundle = [[file:///C:\Users\Skeeto\Desktop\Pokemon Galaxy Trainer\Unity\Fixed_Engine\AssetBundles\game_select_2.unity3d]], position = {500, 500, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},
-    {name = "startupwipe", interactable = false, obtype = "custom_assetbundle", abundle = [[file:///C:/Users/Skeeto/Desktop/Pokemon Galaxy Trainer/Unity/Fixed_Engine/AssetBundles/screen wipe.unity3d]], position = {500, 500, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},
+    {name = "startupbg1", interactable = false, obtype = "custom_assetbundle", abundle = [[https://firebasestorage.googleapis.com/v0/b/mmbndb-dca4f.appspot.com/o/Assetbundles%2Fgame_select.unity3d?alt=media]], position = {500, 500, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},
+    {name = "startupbuttons", interactable = false, obtype = "custom_assetbundle", abundle = [[https://firebasestorage.googleapis.com/v0/b/mmbndb-dca4f.appspot.com/o/Assetbundles%2Fgame_select_2.unity3d?alt=media]], position = {500, 500, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},
+    {name = "startupwipe", interactable = false, obtype = "custom_assetbundle", abundle = [[https://firebasestorage.googleapis.com/v0/b/mmbndb-dca4f.appspot.com/o/Assetbundles%2Fscreen%20wipe.unity3d?alt=media]], position = {500, 500, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},
   }
 }
 

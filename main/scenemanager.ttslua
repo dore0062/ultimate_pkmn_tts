@@ -12,11 +12,11 @@ function loadingScreen(show)
   if show == true then
     self.UI.show("loading")
     self.UI.show("loading_panel")
-    loading_screen.AssetBundle.playLoopingEffect(0)
+    -- loading_screen.AssetBundle.playLoopingEffect(0) FIXME
   else
     self.UI.hide("loading")
     self.UI.hide("loading_panel")
-    loading_screen.AssetBundle.playLoopingEffect(1)
+    -- loading_screen.AssetBundle.playLoopingEffect(1)
   end
 end
 

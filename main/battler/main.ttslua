@@ -1,0 +1,8 @@
+-- Handles battles
+do
+  Battler = {}
+
+  function Battler.debug()
+    print("debug")
+  end
+end

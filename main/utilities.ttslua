@@ -63,3 +63,10 @@ function cameraLock(p, pi, y, d)
   CAMERALOCK = true
   cameraLockLoop()
 end
+
+-- Move camera to new position
+function cameraMove(p, pi, y, d)
+  for _, player in ipairs(Player.getPlayers()) do
+    player.lookAt({position = p, pitch = pi, yaw = y, distance = d})
+  end
+end
