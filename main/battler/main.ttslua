@@ -1,8 +1,127 @@
 -- Handles battles
 do
-  Battler = {}
+  Battle = {}
+  logStyle("success", "Green")
+  logStyle("error", "Red")
+  logStyle("warning", "Yellow")
 
-  function Battler.debug()
-    print("debug")
+  local function tablecopy(orig) -- Required not to overwrite tables
+    local orig_type = type(orig)
+    local copy
+    if orig_type == 'table' then
+      copy = {}
+      for orig_key, orig_value in pairs(orig) do
+        copy[orig_key] = orig_value
+      end
+    else -- number, string, boolean, etc
+      copy = orig
+    end
+    return copy
+  end
+
+  local default_values = {
+    weather = "clear",
+    stage = "setup",
+    teams = {}
+  }
+
+  local memory = tablecopy(default_values)
+
+  function Battle.start(teams)
+    if not teams then log("teams are needed to start the match", "", "error") end
+    local loaded_teams = {}
+
+    if memory.stage ~= "setup" then
+      log("Battle.start failed: wrong stage", "", "error")
+      return nil
+    end
+
+    for x, d in pairs(teams) do
+      for _, d in pairs(d["pkmn"]) do
+        if not d.chp or not d.maxhp or not gmtD["JSON"]["pkmn"][d.pkmn] then -- Verify data works
+          log("battle.start failed: bad data", "", "error")
+          if not d.chp then
+            log("expected chp, got nil", "", "error")
+          elseif not d.maxhp then
+            log("expected maxhp, got nil", "", "error")
+          elseif not gmtD["JSON"]["pkmn"][d.pkmn] then
+            log("could not find Pokemon in database", "", "error")
+          end
+          return nil
+        end
+      end
+    end
+
+
+    memory.teams = teams
+    for _, team in pairs(memory.teams) do
+      for _, d in pairs(team) do
+        for id, _ in pairs(d) do
+          team["selected"] = id
+          break
+        end
+        break
+      end
+    end
+
+    memory.stage = "battle"
+    log("Battle module: battle started", "", "success")
+    return nil
+  end
+
+  function Battle.setAction(player, action)
+    if memory.stage ~= "battle" then
+      log("Cannot set action outside of battle stage", "", "error")
+      return nil
+    end
+    memory["teams"][player]["action"] = action
+
+    log("Player ".. player .. " set next action to ".. action, "", "success")
+  end
+
+  function Battle.setMove(player, move)
+    if memory.stage ~= "battle" then
+      log("Cannot set move outside of battle stage", "", "error")
+    end
+    local team = memory["teams"][player]
+    local selected = team["selected"]
+    local pkmn = team["pkmn"][selected]["pkmn"]
+
+    if gmtD["JSON"]["pkmn"][pkmn]["attacks"][move] then
+      team["nextmove"] = move
+    else
+      log("move does not exist in db", "", "error")
+      return nil
+    end
+    log("Pkmn ".. selected .. " set move to ".. move, "", "success")
+  end
+
+  function Battle.setPokemon(player, pkmnid)
+    if memory.stage ~= "battle" then
+      log("Cannot set move outside of battle stage", "", "error")
+    end
+    -- TODO
+  end
+
+  -- Main
+  function Battle.nextRound(debug)
+    if not debug then debug = false end
+    if memory.stage ~= "battle" then
+      log("nextRound can only be used during battle phase", "", "error")
+      return nil
+    end
+
+    memory.stage = "round"
+    for _, d in pairs(memory.teams) do -- Need to wait for anims to complete before resetting memory.stage
+      if d.action == "attack" then
+        print("Nil")
+      elseif d.move == "item" then
+        print("Nil")
+      elseif d.move == "switch" then
+        print("Nil")
+      elseif d.move == "forfeit" then
+        print("Nil")
+      end
+    end
   end
 end

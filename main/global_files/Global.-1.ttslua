@@ -1,7 +1,10 @@
+#include !/mtgalaxy/pokemon_database
 #include !/mtgalaxy/main/theme
 #include !/mtgalaxy/main/startup
 #include !/mtgalaxy/main/scenemanager
 #include !/mtgalaxy/main/utilities
+#include !/mtgalaxy/main/battler/main
+#include !/mtgalaxy/main/battler/debug
 #include !/mtgalaxy/main/object_scripts/pfab
 #include !/mtgalaxy/main/data/misc_tables
 
@@ -17,7 +20,7 @@
 -------------------------------------------
 NOLOAD = false -- Prevents game from loading to commit permanent object saves if true
 MUSIC = false -- Does not play any music if false
-SCENETOLOAD = nil -- Table of scene to load automatically at start
+SCENETOLOAD = battle_simulator -- Table of scene to load automatically at start
 -------------------------------------------
 -- Global Variables
 -------------------------------------------
@@ -26,10 +29,12 @@ CAMERALOCK = false -- Whether the camera is locked
 -------------------------------------------
 
 function onLoad()
+
+  Battledebug.debug()
+
   loading_screen = getObjectFromGUID("d14923")
   bgm_player = getObjectFromGUID("c23be9")
   fx_master = getObjectFromGUID("6462bd")
-  scene_selection = getObjectFromGUID("36536e")
   scene_objects = {} -- WARNING DO NOT KEEP ME
 
   -- TODO add some functions for saving and loading at the end
@@ -38,18 +43,9 @@ function onLoad()
     setTheme()
   elseif SCENETOLOAD then
     loadScene(SCENETOLOAD, false)
-    Wait.condition(function() Wait.time(function()
-      if camera_ex then camera_ex.AssetBundle.playLoopingEffect(1) end
+    Wait.condition(function() Wait.time(function() -- Insert any debug options after sceneload here
 
-      anim_test = extractChild(pfab1, {"pfab2(Clone)","holotop","angler","Canvas","Mask","Attacks","1","highlight"})
-      -- for x, d in pairs(anim_test.getComponents()) do
-      --   print(x, d)
-      -- end
-      for x, d in pairs(anim_test.getComponent("CanvasRenderer").getVars()) do
-        print(x, d)
-      end
-
-    end, 0.75) end, GameloadWatch) -- Insert any debug options after sceneload here
+    end, 0.75) end, GameloadWatch)
     self.UI.hide("loading")
     self.UI.hide("loading_panel")
   else

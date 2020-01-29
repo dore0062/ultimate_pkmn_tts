@@ -14,7 +14,7 @@
 <!-- Main Menu -->
 <button id="debug_start" height="100%" width="100%" color="" onClick="startScreen" active="false"/>
 
-<panel id="mainmenu" height="35%" width="30%" offsetXY="0 -120" color="" active="false" visibility="Host">
+<panel id="mainmenu" height="35%" width="30%" offsetXY="0 -120" color="" active="false">
 <VerticalLayout>
 <button id="newgame"  color="" onMouseEnter="mainMenuAnimationEnter" onMouseExit="mainMenuAnimationExit" onClick="mainMenuNewGame"/>
 <button id="changelog" color="" onMouseEnter="mainMenuAnimationEnter" onMouseExit="mainMenuAnimationExit" onClick="mainMenuChangelogOpen"/>
@@ -77,12 +77,7 @@
   <button height="50" width="200" offsetXY="0 -295" onClick="mainMenuChangelogClose">Back</button>
 </panel>
 
-<panel id="sceneselect" active="false">
-<panel id="ssright" height="200" width="100" color="" offsetXY="200 40" onClick="ssMenuNav"/>
-<panel id="ssleft" height="200" width="100" color="" offsetXY="-200 40" onClick="ssMenuNav"/>
-<button height="50" width="100" offsetXY="-200 -200" onclick="ssMenuBack"/>
-</panel>
-
-<panel id="menuSelection" active="false">
-  <button color="" rectAlignment="MiddleRight" height="150" width="400" offsetXY="0 420" onClick="mainMenuNewGameBack"/>
+<panel id="menuSelection" active="false" height="50%">
+  <button id="Battle_Simulator" color="" rectAlignment="MiddleLeft" height="125" width="600" offsetXY="150 255" onClick="ssMenuMap"/>
+  <button color="" rectAlignment="MiddleRight" height="150" width="500" offsetXY="0 420" onClick="mainMenuNewGameBack"/>
 </panel>
