@@ -1,4 +1,4 @@
-#include !/mtgalaxy/pokemon_database
+#include !/mtgalaxy/main/data/pokemon_database
 #include !/mtgalaxy/main/theme
 #include !/mtgalaxy/main/startup
 #include !/mtgalaxy/main/scenemanager
@@ -8,13 +8,6 @@
 #include !/mtgalaxy/main/object_scripts/pfab
 #include !/mtgalaxy/main/data/misc_tables
 
--------------------------------------------
--- Todo list
--------------------------------------------
--- TODO changelog stuff
--- TODO make scene manager delete things gosh darn it / reorganize it
--- TODO make new game temporarily do something
--- TODO ???? profit
 -------------------------------------------
 -- Debug options
 -------------------------------------------
