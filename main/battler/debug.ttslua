@@ -46,7 +46,8 @@ do
     Battle.start(teamgood) -- should succeed
     Battle.setAction("Red","attack")
     Battle.setAction("White","attack")
-    Battle.setMove("White","Ember")
-    -- Battle.nextRound()
+    Battle.setPkmn("White", "4fBgf")
+    Battle.setMove("White","Ember", "4fBgf")
+    Battle.nextRound()
   end
 end

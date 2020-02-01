@@ -54,16 +54,6 @@ do
 
 
     memory.teams = teams
-    for _, team in pairs(memory.teams) do
-      for _, d in pairs(team) do
-        for id, _ in pairs(d) do
-          team["selected"] = id
-          break
-        end
-        break
-      end
-    end
-
     memory.stage = "battle"
     log("Battle module: battle started", "", "success")
     return nil
@@ -79,31 +69,51 @@ do
     log("Player ".. player .. " set next action to ".. action, "", "success")
   end
 
-  function Battle.setMove(player, move)
+  function Battle.setMove(player, move, pkmnid)
     if memory.stage ~= "battle" then
       log("Cannot set move outside of battle stage", "", "error")
     end
     local team = memory["teams"][player]
     local selected = team["selected"]
-    local pkmn = team["pkmn"][selected]["pkmn"]
+
+    if not team["pkmn_selected"][pkmnid] then
+      log("Pkmn'".. pkmnid .."' is not presently active", "", "error")
+    end
+
+    local pkmn = team["pkmn_selected"][pkmnid]["pkmn"]
 
     if gmtD["JSON"]["pkmn"][pkmn]["attacks"][move] then
       team["nextmove"] = move
     else
+      log("Move does not exist in db", "", "error")
+      return nil
+    end
+    log("Pokemon "..pkmn.."(".. pkmnid .. ") set move to ".. move, "", "success")
+  end
+
+  function Battle.setPkmn(player, pkmnid) -- Futureproofing for double battles
+    if memory.stage ~= "battle" then
+      log("Cannot set pkmn outside of battle stage", "", "error")
+    end
+
+    local team = memory["teams"][player]
+    local pkmn = team["pkmn"][pkmnid]
+
+    if not pkmn then
       log("move does not exist in db", "", "error")
       return nil
     end
-    log("Pkmn ".. selected .. " set move to ".. move, "", "success")
+
+    if not team["pkmn_selected"] then team["pkmn_selected"] = {} end
+
+    team["pkmn_selected"][pkmnid] = pkmn
+    team["pkmn"][pkmnid] = nil
+    log("Pokemon ".. team["pkmn_selected"][pkmnid]["pkmn"].."(" .. pkmnid .. ") added to " .. player .. "'s active Pokemon", "", "success")
   end
 
-  function Battle.setPokemon(player, pkmnid)
-    if memory.stage ~= "battle" then
-      log("Cannot set move outside of battle stage", "", "error")
-    end
-    -- TODO
-  end
+  -- Action note:
+  -- Regardless of # of Pkmn, you can only do one action.
 
-  -- Main
   function Battle.nextRound(debug)
     if not debug then debug = false end
     if memory.stage ~= "battle" then
@@ -112,16 +122,38 @@ do
     end
 
     memory.stage = "round"
-    for _, d in pairs(memory.teams) do -- Need to wait for anims to complete before resetting memory.stage
+
+    Battle.round = coroutine.create(function ()
+      for x, d in pairs(memory.teams) do
       if d.action == "attack" then
-        print("Nil")
-      elseif d.move == "item" then
-        print("Nil")
-      elseif d.move == "switch" then
-        print("Nil")
-      elseif d.move == "forfeit" then
-        print("Nil")
+        Battle.attack(x)
+        coroutine.yield()
+      elseif d.action == "item" then
+        Battle.useItem(x)
+        coroutine.yield()
+      elseif d.action == "switch" then
+        Battle.switchPkmn(x)
+        coroutine.yield()
+      elseif d.action == "forfeit" then
+        Battle.forfeit(x)
+        coroutine.yield()
       end
-    end
+    end end )
+    coroutine.resume(Battle.round)
   end
+
+  function Battle.attack(team)
+    Wait.time(|| coroutine.resume(Battle.round), 2)
+  end
+
+  function Battle.useItem(team)
+  end
+
+  function Battle.switchPkmn(team)
+  end
+
+  function Battle.forfeit(team)
+  end
+
+
 end
