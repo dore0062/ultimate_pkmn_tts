@@ -1,0 +1,631 @@
+{
+  "SaveName": "Pokemon MS Galaxy: BA INDEV (LOCAL)",
+  "GameMode": "Pokemon MS Galaxy: BA",
+  "Gravity": 0.5,
+  "PlayArea": 0.15555501,
+  "Date": "1/24/2020 11:47:07 PM",
+  "Table": "Table_None",
+  "Sky": "Sky_Regal",
+  "Note": "",
+  "Rules": "",
+  "XmlUI": "<!-- Xml UI. See documentation: https://api.tabletopsimulator.com/ui/introUI/ -->\r\n<Defaults>\r\n<Text class=\"left\" offsetXY=\"-460 0\" fontSize=\"45\" />\r\n<Text class=\"right\" offsetXY=\"360 0\" fontSize=\"45\" alignment=\"MiddleLeft\" />\r\n</Defaults>\r\n\r\n<!-- Loading -->\r\n<image id=\"loading\" height=\"250%\" width=\"250%\" preserveAspect=\"true\" image=\"full\" hideAnimation=\"Shrink\" showAnimation=\"Grow\" animationDuration=\"0.60\"/>\r\n<panel id=\"loading_panel\" height=\"60\" width=\"300\" offsetXY=\"0 -190\" hideAnimation=\"FadeOut\" showAnimation=\"FadeIn\" animationDuration=\"0.1\">\r\n  <ProgressBar id=\"loading_percent\" height=\"40\" width=\"90%\" fillImage=\"bar\" image=\"\" color=\"\" preserveAspect=\"True\"  showPercentageText=\"false\" percentage=\"0\"/>\r\n  <image image=\"bg\" preserveAspect=\"true\"/>\r\n</panel>\r\n\r\n<!-- Main Menu -->\r\n<button id=\"debug_start\" height=\"100%\" width=\"100%\" color=\"\" onClick=\"startScreen\" active=\"false\"/>\r\n\r\n<panel id=\"mainmenu\" height=\"35%\" width=\"30%\" offsetXY=\"0 -120\" color=\"\" active=\"false\">\r\n<VerticalLayout>\r\n<button id=\"newgame\"  color=\"\" onMouseEnter=\"mainMenuAnimationEnter\" onMouseExit=\"mainMenuAnimationExit\" onClick=\"mainMenuNewGame\"/>\r\n<button id=\"changelog\" color=\"\" onMouseEnter=\"mainMenuAnimationEnter\" onMouseExit=\"mainMenuAnimationExit\" onClick=\"mainMenuChangelogOpen\"/>\r\n<button id=\"options\" color=\"\" onMouseEnter=\"mainMenuAnimationEnter\" onMouseExit=\"mainMenuAnimationExit\" onClick=\"mainMenuOptionsOpen\"/>\r\n<button id=\"credits\" color=\"\" onMouseEnter=\"mainMenuAnimationEnter\" onMouseExit=\"mainMenuAnimationExit\" onClick=\"\" tooltip=\"None yet! Be patient.\"/>\r\n</VerticalLayout>\r\n</panel>\r\n\r\n<!-- Options -->\r\n<panel id=\"optionsMenu\" height=\"1000\" width=\"65%\" active=\"false\" showAnimation=\"Grow\" hideAnimation=\"FadeOut\" animationDuration=\"0.25\">\r\n<VerticalScrollView height=\"700\" width=\"100%\" color=\"\" scrollbarImage=\"\" scrollbarBackgroundColor=\"Black\" scrollSensitivity=\"50\" >\r\n  <TableLayout cellSpacing=\"15\" cellBackgroundColor=\"clear\" autoCalculateHeight=\"1\" padding=\"8 24 8 8\">\r\n    <Row preferredHeight=\"128\" tooltip=\"Changes in-game music volume.\" tooltipPosition=\"Left\">\r\n      <image image=\"optionmenu\"/>\r\n      <text class=\"left\" text=\"Music Volume\" />\r\n      <slider id=\"BGM_VOLUME\" onValueChanged=\"optionsSetVolume\" height=\"120%\" handleImage=\"\" handleColor=\"\" offsetXY=\"175 0\" value=\"0.75\" width=\"65%\" minValue=\"0\" maxValue=\"1\"/>\r\n    </Row>\r\n    <Row preferredHeight=\"128\">\r\n      <image image=\"optionmenu\"/>\r\n      <text class=\"left\" text=\"FX Volume\"/>\r\n      <slider id=\"FX_VOLUME\" onValueChanged=\"optionsSetVolume\" height=\"120%\" handleImage=\"\" handleColor=\"\" offsetXY=\"175 0\" value=\"0.75\" width=\"65%\" minValue=\"0\" maxValue=\"1\"/>\r\n    </Row>\r\n    <Row preferredHeight=\"128\">\r\n      <image image=\"optionmenu\"/>\r\n      <text class=\"left\" text=\"Option A\" />\r\n    </Row>\r\n    <Row preferredHeight=\"128\">\r\n      <image image=\"optionmenu\"/>\r\n      <text class=\"left\" text=\"Option A\" />\r\n    </Row>\r\n    <Row preferredHeight=\"128\">\r\n      <image image=\"optionmenu\"/>\r\n      <text class=\"left\" text=\"Option A\" />\r\n    </Row>\r\n    <Row preferredHeight=\"128\">\r\n      <image image=\"optionmenu\"/>\r\n      <text class=\"left\" text=\"Option A\" />\r\n    </Row>\r\n    <Row preferredHeight=\"128\">\r\n      <image image=\"optionmenu\"/>\r\n      <text class=\"left\" text=\"Option A\" />\r\n    </Row>\r\n    <Row preferredHeight=\"128\">\r\n      <image image=\"optionmenu\"/>\r\n      <text class=\"left\" text=\"Option A\" />\r\n    </Row>\r\n  </TableLayout>\r\n</VerticalScrollView>\r\n<text alignment=\"UpperCenter\" fontsize=\"20\" offsetXY=\"0 -120\" color=\"White\">Options in this menu are global to all players.</text>\r\n<button height=\"50\" width=\"200\" offsetXY=\"-500 -400\" onClick=\"mainMenuOptionsClose\">Back</button>\r\n</panel>\r\n\r\n<!-- Changelog -->\r\n<panel id=\"changelogmenu\" height=\"500\" width=\"65%\" offsetXY =\"0 -200\" active=\"false\">\r\n  <VerticalScrollView color=\"\" scrollbarImage=\"\" scrollbarBackgroundColor=\"Black\" scrollSensitivity=\"50\" >\r\n    <panel color=\"rgba(102, 102, 102, 0.75)\" height=\"1000\" padding=\"10 10 10 10\">\r\n      <text id=\"changelogtext\" alignment=\"UpperLeft\" text=\"Could not load changelog. \"></text>\r\n    </panel>\r\n  </VerticalScrollView>\r\n  <button height=\"50\" width=\"200\" offsetXY=\"0 -295\" onClick=\"mainMenuChangelogClose\">Back</button>\r\n</panel>\r\n\r\n<panel id=\"menuSelection\" active=\"false\" height=\"50%\">\r\n  <button id=\"Battle_Simulator\" color=\"\" rectAlignment=\"MiddleLeft\" height=\"125\" width=\"600\" offsetXY=\"150 255\" onClick=\"ssMenuMap\"/>\r\n  <button color=\"\" rectAlignment=\"MiddleRight\" height=\"150\" width=\"500\" offsetXY=\"0 420\" onClick=\"mainMenuNewGameBack\"/>\r\n</panel>",
+  "CustomUIAssets": [
+    {
+      "Name": "full",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/781868889987293098/4AA48818FE22BF7365A88159FE0D6E5FB4885FB1/"
+    },
+    {
+      "Name": "bar",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/781868986608370066/2A3D2756236F164179885FA2082F248F5F1CE416/"
+    },
+    {
+      "Name": "bg",
+      "URL": "http://cloud-3.steamusercontent.com/ugc/781868986608334934/3319754ECA31697F90D1AA6A745859862C15A6E0/"
+    }
+  ],
+  "LuaScript": "----#include !/mtgalaxy/pokemon_database\n-- Damage multipliers\r\n  gmtD = {}\r\n\r\n  gmtD.DAMAGE = {\r\n   SE   = 1.30, -- Super effective\r\n   NO   = 1, -- Normal\r\n   CRIT = 1.60, -- Critical\r\n   NE   = 0.50 -- Not Effective\r\n  }\r\n\r\n  -- Resistance types\r\n  gmtD.RESISTANCE = {\r\n    [\"normal\"]   = {\r\n      [\"normal\"]   = gmtD.DAMAGE.NO,\r\n      [\"fire\"]     = gmtD.DAMAGE.NO,\r\n      [\"grass\"]    = gmtD.DAMAGE.NO,\r\n      [\"water\"]    = gmtD.DAMAGE.NO,\r\n      [\"fighting\"] = gmtD.DAMAGE.SE,\r\n      [\"psychic\"]  = gmtD.DAMAGE.NO\r\n    },\r\n    [\"fire\"]     = {\r\n      [\"normal\"]   = gmtD.DAMAGE.NO,\r\n      [\"fire\"]     = gmtD.DAMAGE.NE,\r\n      [\"grass\"]    = gmtD.DAMAGE.SE,\r\n      [\"water\"]    = gmtD.DAMAGE.NE,\r\n      [\"fighting\"] = gmtD.DAMAGE.NE,\r\n      [\"psychic\"]  = gmtD.DAMAGE.NO\r\n    },\r\n    [\"grass\"]    = {\r\n      [\"normal\"]   = gmtD.DAMAGE.NO,\r\n      [\"fire\"]     = gmtD.DAMAGE.NE,\r\n      [\"grass\"]    = gmtD.DAMAGE.SE,\r\n      [\"water\"]    = gmtD.DAMAGE.NE,\r\n      [\"fighting\"] = gmtD.DAMAGE.NE,\r\n      [\"psychic\"]  = gmtD.DAMAGE.NO\r\n    },\r\n    [\"water\"]    = {\r\n      [\"normal\"]   = gmtD.DAMAGE.NO,\r\n      [\"fire\"]     = gmtD.DAMAGE.SE,\r\n      [\"grass\"]    = gmtD.DAMAGE.SE,\r\n      [\"water\"]    = gmtD.DAMAGE.NE,\r\n      [\"fighting\"] = gmtD.DAMAGE.NE,\r\n      [\"psychic\"]  = gmtD.DAMAGE.NO\r\n    },\r\n    [\"fighting\"] = {\r\n      [\"normal\"]   = gmtD.DAMAGE.NO,\r\n      [\"fire\"]     = gmtD.DAMAGE.NE,\r\n      [\"grass\"]    = gmtD.DAMAGE.SE,\r\n      [\"water\"]    = gmtD.DAMAGE.NE,\r\n      [\"fighting\"] = gmtD.DAMAGE.NE,\r\n      [\"psychic\"]  = gmtD.DAMAGE.NO\r\n    },\r\n    [\"psychic\"]  = {\r\n      [\"normal\"]   = gmtD.DAMAGE.NO,\r\n      [\"fire\"]     = gmtD.DAMAGE.NE,\r\n      [\"grass\"]    = gmtD.DAMAGE.SE,\r\n      [\"water\"]    = gmtD.DAMAGE.NE,\r\n      [\"fighting\"] = gmtD.DAMAGE.NE,\r\n      [\"psychic\"]  = gmtD.DAMAGE.NO\r\n     }\r\n  }\r\n\r\n  -- This is a global backup of the pkmn DB\r\n  gmtD.JSON = JSON.decode([[{\r\n    \"database_version\" : 0.11,\r\n    \"pkmn\" : {\r\n      \"charmander\" : {\r\n        \"assetbundle\" : \"http://cloud-3.steamusercontent.com/ugc/787486340357810408/433C9A1F14FDDE7EA0ED642180C86106F9DB6F8E/\",\r\n        \"attacks\" : {\r\n          \"Chomp\" : {\r\n            \"animation\" : 2,\r\n            \"damage\" : 20,\r\n            \"duration\" : 2.133,\r\n            \"energy\" : [ null, \"colorless\", \"colorless\" ],\r\n            \"id\" : 1,\r\n            \"type\" : \"normal\"\r\n          },\r\n          \"Ember\" : {\r\n            \"animation\" : 3,\r\n            \"damage\" : 0,\r\n            \"duration\" : 2.133,\r\n            \"energy\" : [ null, \"fire\" ],\r\n            \"extra\" : \"&lt;size=25&gt; 50% chance to &lt;color=red&gt;burn&lt;/color&gt; enemy. &lt;/size&gt;\",\r\n            \"id\" : 2,\r\n            \"type\" : \"fire\"\r\n          }\r\n        },\r\n        \"dex\" : 4,\r\n        \"hp\" : 30,\r\n        \"id\" : 4,\r\n        \"type\" : \"fire\"\r\n      },\r\n      \"charmeleon\" : {\r\n        \"assetbundle\" : \"http://cloud-3.steamusercontent.com/ugc/787486974294403138/7AEFC60D8C39595F44485283D83FB7E359DCBAD4/\",\r\n        \"attacks\" : {\r\n          \"Flamethrower\" : {\r\n            \"damage\" : 30,\r\n            \"duration\" : 2.33,\r\n            \"energy\" : [ null, \"fire\", \"fire\" ],\r\n            \"type\" : \"fire\"\r\n          },\r\n          \"Slash\" : {\r\n            \"damage\" : 10,\r\n            \"duration\" : 1.867,\r\n            \"energy\" : [ null, \"colorless\" ],\r\n            \"type\" : \"normal\"\r\n          }\r\n        },\r\n        \"dex\" : 5,\r\n        \"hp\" : 60,\r\n        \"id\" : 5,\r\n        \"type\" : \"fire\"\r\n      }\r\n    }\r\n  }\r\n  ]])\r\n\n----#include !/mtgalaxy/pokemon_database\n----#include !/mtgalaxy/main/theme\n-- Theme used at gamestart.\r\nMASTERTRAINERTHEME = [[name Pokemon Master Trainer Galaxy Theme\r\n\r\nbutton_normal             #0669BF\r\nbutton_hover              #51A8F4\r\nbutton_pressed            #0785F2\r\nbutton_disabled           #0785F2\r\nbutton_highlight_a        #0785F2\r\nbutton_highlight_b        #51A8F4\r\nbutton_highlight_c        #F52D00\r\nbutton_neutral            #294C6B\r\n\r\nwindow_background         #307CBF\r\ncontrol_background        #0669BF\r\ntransparent_background    #0669BF37\r\ndivider                   #F49944\r\n\r\ntab_normal                #033F73\r\ntab_active                #0089EA\r\ntab_strip                 #0089EA\r\n\r\nmotif                     #0089EA\r\nmotif_highlight_a         #00ADEE\r\nmotif_highlight_b         #79CFE6\r\nsplash                    #5EB759\r\nsplash_highlight          #83D14E\r\nglow                      #000000\r\n\r\ncontext_menu_background   #4C4C4CDC\r\ncontext_menu_hover        #0669BF\r\ncontext_menu_text         #FFFFFF\r\ncontext_menu_highlight    #FF0000\r\n\r\nlabel                     #FFFFFF\r\ninput_text_inactive       #0785F2\r\ninput_text_active         #FFFFFF\r\nfloating_text             #0669BF\r\nnote_edit_text            #0669BF\r\ncaret                     #0669BF\r\nselection                 #FFDF8D80\r\n\r\ntooltip_background        #151515E1\r\ntooltip_border            #FFFFFF\r\ntooltip_text              #FFFFFF\r\ntooltip_motif             #0089EA\r\n\r\nradio_button_background   #307CBF\r\nradio_button_pressed      #307CBF\r\n\r\ncheck_box_background      #0669BF\r\ncheck_box_pressed         #307CBF\r\n\r\nslider_normal             #294C6B\r\nslider_pressed            #0785F2\r\nslider_label              #0669BF\r\n\r\nchat_tab_background       #294C6B7F\r\nchat_tab_highlight        #2B46E7128\r\n\r\nconsole_output_background #000000E6\r\nconsole_output_controls   #000000\r\nconsole_input_background  #000000E6\r\nconsole_input_controls    #000000\r\nconsole_input_text        #FFFFFF\r\n\r\nlua_background            #554F87\r\nlua_text                  #C8C8C8\r\nlua_caret                 #0669BF\r\nlua_selection             #C8C8C880\r\n\r\nhigh                      #0669BF\r\nlow                       #FFFFFF\r\nhover_highlight           #0669BF\r\nbackground_tint           #00000000]]\r\n\n----#include !/mtgalaxy/main/theme\n----#include !/mtgalaxy/main/startup\n-- This file includes functions for managing the main menu and the \"start\" of the game. (The initial first load)\r\n-- TODO polish!\r\nfunction firstLoad() -- TODO These should be loaded from the scene manager EXCEPT options, which is always active\r\n  new_game = getObjectFromGUID(\"49edc2\")\r\n  changelog = getObjectFromGUID(\"ab1086\")\r\n  options = getObjectFromGUID(\"38c20e\")\r\n  credits = getObjectFromGUID(\"0dc88f\")\r\n\r\n  -- Move modules off-map\r\n  options.setPosition({200, 200, 200})\r\n  credits.setPosition({200, 200, 200})\r\n  changelog.setPosition({200, 200, 200})\r\n  new_game.setPosition({200, 200, 200})\r\n  bgm_player.setPosition({200, 200, 200})\r\n  fx_master.setPosition({200, 200, 200})\r\n  loadScene(main_menu, true)\r\n\r\ntable.insert(BGM_VOLUME, extractChild(bgm_player, {\"Cube(Clone)\",\"bgm01\"}).getComponent(\"AudioSource\"))\r\n\r\nfor x, d in pairs(extractChild(fx_master, {\"FXMaster(Clone)\"}).getChildren()) do\r\n  table.insert(FX_VOLUME, d.getComponent(\"AudioSource\"))\r\nend\r\n\r\n  -- Wait for scene to have loaded\r\n  Wait.condition(function()\r\n    if MUSIC == true then\r\n       Wait.time(|| bgm_player.AssetBundle.playLoopingEffect(1), 2)\r\n     end\r\n\r\n    cameraLock({0, 2.0, 10.94}, 0, 180, 0.01) -- Where the camera is locked to. One day make this animated.\r\n\r\n    Wait.time(function()\r\n      Wait.time(||self.UI.setAttribute(\"debug_start\", \"active\", \"true\"), 1)\r\n      scene_objects[2].AssetBundle.playLoopingEffect(1)\r\n    end, 3)\r\n   end, GameloadWatch)\r\nend\r\n\r\nfunction startScreen()\r\n  scene_objects[2].AssetBundle.playLoopingEffect(2)\r\n  self.UI.setAttribute(\"debug_start\", \"active\", \"false\")\r\n  mainMenuLoop(1)\r\n  Wait.time(|| self.UI.show(\"mainmenu\"), 0.50)\r\nend\r\n\r\n-------------------------------\r\n-- Main Menu UI Functions\r\n-------------------------------\r\n-- Play a looping effect on all main menu options\r\nfunction mainMenuLoop(x)\r\n  new_game.AssetBundle.playLoopingEffect(x)\r\n  options.AssetBundle.playLoopingEffect(x)\r\n  changelog.AssetBundle.playLoopingEffect(x)\r\n  credits.AssetBundle.playLoopingEffect(x)\r\nend\r\n\r\n-- Main menu\r\nfunction mainMenuAnimationEnter(_, _, x)\r\n  if x == \"newgame\" then\r\n    new_game.AssetBundle.playLoopingEffect(2)\r\n  elseif x == \"changelog\" then\r\n    changelog.AssetBundle.playLoopingEffect(2)\r\n  elseif x == \"options\" then\r\n    options.AssetBundle.playLoopingEffect(2)\r\n  elseif x == \"credits\" then\r\n    credits.AssetBundle.playLoopingEffect(2)\r\n  end\r\nend\r\n\r\nfunction mainMenuAnimationExit(_, _, x)\r\n  if x == \"newgame\" then\r\n    new_game.AssetBundle.playLoopingEffect(3)\r\n  elseif x == \"changelog\" then\r\n    changelog.AssetBundle.playLoopingEffect(3)\r\n  elseif x == \"options\" then\r\n    options.AssetBundle.playLoopingEffect(3)\r\n  elseif x == \"credits\" then\r\n    credits.AssetBundle.playLoopingEffect(3)\r\n  end\r\nend\r\n\r\n-- New Game\r\nfunction mainMenuNewGame()\r\nself.UI.hide(\"mainmenu\")\r\nWait.time(function()\r\nscene_objects[2].AssetBundle.playLoopingEffect(0) -- Logo off\r\nscene_objects[4].AssetBundle.playLoopingEffect(1) -- BG\r\nscene_objects[3].AssetBundle.playLoopingEffect(1) -- Foreground\r\nmainMenuLoop(0)\r\nWait.time(|| self.UI.show(\"menuSelection\"), 0.50)\r\nend, 0.50)\r\nWait.time(|| scene_objects[5].AssetBundle.playLoopingEffect(0), 1) -- Reset screen wipe state\r\nscene_objects[5].AssetBundle.playLoopingEffect(1) -- Screen wipe\r\nend\r\n\r\nfunction mainMenuNewGameBack()\r\n  self.UI.hide(\"menuSelection\")\r\nWait.time(function()\r\nscene_objects[4].AssetBundle.playLoopingEffect(0) -- BG\r\nscene_objects[3].AssetBundle.playLoopingEffect(0) -- Foreground\r\nscene_objects[2].AssetBundle.playLoopingEffect(4) -- Logo on\r\nmainMenuLoop(1)\r\nWait.time(|| self.UI.show(\"mainmenu\"), 0.50)\r\nend, 0.50)\r\nWait.time(|| scene_objects[5].AssetBundle.playLoopingEffect(0), 1) -- Reset screen wipe state\r\nscene_objects[5].AssetBundle.playLoopingEffect(1) -- Screen wipe\r\nend\r\n\r\n-- Options\r\nfunction mainMenuOptionsOpen()\r\n  playSound(1)\r\n  self.UI.show(\"optionsMenu\")\r\n  self.UI.hide(\"mainmenu\")\r\n  mainMenuLoop(0)\r\n  scene_objects[2].AssetBundle.playLoopingEffect(0)\r\nend\r\n\r\nfunction optionsSetVolume(_,vol,id)\r\n setVolume(id,vol)\r\nend\r\n\r\nfunction mainMenuOptionsClose()\r\n  playSound(2)\r\n  self.UI.hide(\"optionsMenu\")\r\n  Wait.time(|| self.UI.show(\"mainmenu\"), 0.50)\r\n  Wait.time(|| scene_objects[2].AssetBundle.playLoopingEffect(4), 0.10)\r\n  mainMenuLoop(1)\r\nend\r\n\r\n-- Changelog\r\nfunction mainMenuChangelogOpen()\r\n  playSound(1)\r\n  local function webCallback(returned)\r\n    if returned.is_error == false then\r\n      self.UI.setAttribute(\"changelogtext\", \"Text\", \"Save version: \".. SAVEVERSION .. \"\\n\" .. returned.text)\r\n    else\r\n      self.UI.setAttribute(\"changelogtext\", \"Text\", \"There was an error retrieving the latest changelog, please try again later.\")\r\n    end\r\n  end\r\n\r\n  self.UI.show(\"changelogmenu\")\r\n  self.UI.hide(\"mainmenu\")\r\n  WebRequest.get(\"https://raw.githubusercontent.com/Skeeve2/ultimate_pkmn_tts/master/changelog\", function(a) webCallback(a) end)\r\n  mainMenuLoop(0)\r\nend\r\n\r\nfunction mainMenuChangelogClose()\r\n  playSound(2)\r\n  self.UI.hide(\"changelogmenu\")\r\n  Wait.time(|| self.UI.show(\"mainmenu\"), 0.50)\r\n  mainMenuLoop(1)\r\nend\r\n\r\n-- Scene Selection\r\n-- When\r\nfunction ssMenuMap(_,_,id)\r\n\r\nif id == \"Battle_Simulator\" then\r\n  self.UI.hide(\"menuSelection\")\r\n  scene_objects[4].AssetBundle.playLoopingEffect(0)\r\n  scene_objects[3].AssetBundle.playLoopingEffect(0)\r\n  scene_objects[2].AssetBundle.playLoopingEffect(0)\r\n  loadScene(battle_simulator, false ,scene_objects)\r\n  CAMERALOCK = false\r\n  Wait.frames(|| cameraMove({16.82, 0, -64.05}, 25, 25, 5), 10)\r\nelse\r\nend\r\nend\r\n\n----#include !/mtgalaxy/main/startup\n----#include !/mtgalaxy/main/scenemanager\n----#include !/mtgalaxy/main/data/scenes\n-- Scenes used by scenemanager.ttslua\r\n-- These have to finish downloading/loading for the host before the loading screen will disappear.\r\n\r\n-- TODO Fix main menu startup so the logo doesn\r\nmain_menu = {\r\n  playarea = 0.23,\r\n  objects = {\r\n    {name = \"Background\", interactable = false, obtype = \"custom_assetbundle\", abundle = [[https://firebasestorage.googleapis.com/v0/b/mmbndb-dca4f.appspot.com/o/Assetbundles%2Ftitle_screen.unity3d?alt=media]], position = {0, 0, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},\r\n    {name = \"Logo_animation\", interactable = false, obtype = \"custom_assetbundle\", abundle = [[file:///C:\\Users\\Skeeto\\Desktop\\Pokemon Galaxy Trainer\\Unity\\Fixed_Engine\\AssetBundles\\logo_start_screen.unity3d]], position = {500, 500, 500}, rotation = {0, 0, 0}, scale = {1, 1, 1}},\r\n    {name = \"startupbg1\", interactable = false, obtype = \"custom_assetbundle\", abundle = [[https://firebasestorage.googleapis.com/v0/b/mmbndb-dca4f.appspot.com/o/Assetbundles%2Fgame_select.unity3d?alt=media]], position = {500, 500, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},\r\n    {name = \"startupbuttons\", interactable = false, obtype = \"custom_assetbundle\", abundle = [[https://firebasestorage.googleapis.com/v0/b/mmbndb-dca4f.appspot.com/o/Assetbundles%2Fgame_select_2.unity3d?alt=media]], position = {500, 500, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},\r\n    {name = \"startupwipe\", interactable = false, obtype = \"custom_assetbundle\", abundle = [[https://firebasestorage.googleapis.com/v0/b/mmbndb-dca4f.appspot.com/o/Assetbundles%2Fscreen%20wipe.unity3d?alt=media]], position = {500, 500, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},\r\n  }\r\n}\r\n\r\nbattle_simulator = {\r\n  playarea = 0.30,\r\n  objects = {\r\n    {obtype = \"custom_assetbundle\", interactable = false, abundle = [[file:///C:\\Users\\Skeeto\\Desktop\\Pokemon Galaxy Trainer\\Unity\\Fixed_Engine\\AssetBundles\\beach.unity3d]], position = {0, 1.5, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},\r\n    -- {varname = \"pfab1\", script = \"PFAB_SCRIPT\", interactable = false, obtype = \"custom_assetbundle\", abundle = [[file:///C:\\Users\\Skeeto\\Desktop\\Pokemon Galaxy Trainer\\Unity\\Fixed_Engine\\AssetBundles\\pfab2.unity3d]], position = {30.36, 1.48, 0}, rotation = {0, -90, 0}, scale = {1, 1, 1}},\r\n    -- {varname = \"pfab2\", script = \"PFAB_SCRIPT\", interactable = true, obtype = \"custom_assetbundle\", abundle = [[file:///C:\\Users\\Skeeto\\Desktop\\Pokemon Galaxy Trainer\\Unity\\Fixed_Engine\\AssetBundles\\pfab2.unity3d]], position = {-30.36, 1.48, 0}, rotation = {0, 90, 0}, scale = {1, 1, 1}},\r\n    -- {varname = \"camera_ex\", interactable = false, obtype = \"custom_assetbundle\", abundle = [[file:///C:\\Users\\Skeeto\\Desktop\\Pokemon Galaxy Trainer\\Unity\\Fixed_Engine\\AssetBundles\\camera_experiment.unity3d]], position = {0, 0, -40}, rotation = {0, 0, 0}, scale = {1, 1, 1}}\r\n  }\r\n}\r\n\r\nbattle_arena_130 = {\r\n  playarea = 0.23,\r\n  objects = {\r\n    {obtype = \"custom_assetbundle\", abundle = \"http://cloud-3.steamusercontent.com/ugc/781868986608156886/7C7C8B79153C1A59576F99091FD2543CD3650801/\", position = {0, 0, 0}, rotation = {0, 0, 0}, scale = {5, 5, 5}}\r\n  }\r\n}\r\n\n----#include !/mtgalaxy/main/data/scenes\n\r\n-- This file manages scene loading, which are mini-saves to switch between boards.\r\n\r\n-- Global function for watching if a scene has been loaded\r\nGameloadWatch = function() return scene_loaded end\r\n\r\n--- Shows the fullscreen loading on/off\r\n-- Function to enable/disable the fullscreen load for switching between scenes or major loads\r\n-- @param show true/false\r\nfunction loadingScreen(show)\r\n  if show == true then\r\n    self.UI.show(\"loading\")\r\n    self.UI.show(\"loading_panel\")\r\n    -- loading_screen.AssetBundle.playLoopingEffect(0) FIXME\r\n  else\r\n    self.UI.hide(\"loading\")\r\n    self.UI.hide(\"loading_panel\")\r\n    -- loading_screen.AssetBundle.playLoopingEffect(1)\r\n  end\r\nend\r\n\r\n--- Loads a new scene with given objects\r\n-- Should only be STATIC WORLD OBJECTS and PREFABS that don't want the player to see (but we want to load.)\r\n-- @param objects table of objects to load\r\n-- @param true/false gamestart if this is the game starting up\r\n-- @param optional removeobjects table of objects to remove\r\nfunction loadScene(scene_table, gamestart, removeobjects)\r\n  scene_loaded = false\r\n  assert(type(scene_table) == \"table\", \"Error in global: invalid scene to load in loadScene\")\r\n  if removeobjects then assert(type(removeobjects) == \"table\", \"Error in global: invalid table given for loadScene\") end\r\n\r\n  self.UI.setAttribute(\"loading_percent\", \"percentage\", \"0\")\r\n  if not gamestart == true then\r\n    loadingScreen(true)\r\n  end\r\n\r\n  total_objects_to_load = #scene_table.objects -- Total number of objects to load\r\n  done_loading = 0 -- Objects that are done loading\r\n\r\n  if removeobjects then\r\n    for x, d in pairs(removeobjects) do\r\n      Wait.Time(|| d.destruct(), 1)\r\n    end\r\n  end\r\n\r\n  if scene_table.playarea ~= Physics.play_area then\r\n    Physics.play_area = scene_table.playarea\r\n  end\r\n\r\n  for x, d in ipairs(scene_table.objects) do\r\n    spawnObject({\r\n      type = d.obtype,\r\n      position = d.position,\r\n      rotation = d.rotation,\r\n      scale = d.scale,\r\n      sound = false,\r\n      callback_function = function(obj) loadSceneCallback(obj, d.abundle, d.varname, d.interactable, d.script) end\r\n    })\r\n  end\r\nend\r\n\r\nfunction loadSceneCallback(obj, bundle, name, interactable, script)\r\n  local function setPercentage()\r\n    done_loading = done_loading + 1\r\n    local percent = done_loading / total_objects_to_load * 100\r\n    self.UI.setAttribute(\"loading_percent\", \"percentage\", tostring(percent))\r\n    if percent == 100 then scene_loaded = true Wait.time(function() loadingScreen(false) end, 2) end\r\n  end\r\n\r\n  obj.setCustomObject({assetbundle = bundle})\r\n  obj = obj.reload()\r\n  loaded = obj.spawning\r\n\r\n  if interactable == false then\r\n    obj.interactable = false\r\n  end\r\n\r\n  if script then\r\n    obj.setLuaScript(_G[script])\r\n  end\r\n\r\n  if name then _G[name] = obj end -- Set an object reference if name\r\n  table.insert(scene_objects, obj)\r\n  local loadWatch = function() return loaded end\r\n  Wait.condition(setPercentage, loadWatch)\r\nend\r\n\n----#include !/mtgalaxy/main/scenemanager\n----#include !/mtgalaxy/main/utilities\n-- This file contains misc utilities used throughout the base.\r\n\r\n--- Sets the selected theme for all players\r\nfunction setTheme()\r\n  for _, player in ipairs(Player.getPlayers()) do\r\n    player.setUITheme(MASTERTRAINERTHEME)\r\n  end\r\nend\r\n\r\n-- Sets volume of volume table with specified volume\r\nfunction setVolume(volumetable, volume)\r\n  for x, d in ipairs(_G[volumetable]) do\r\n    d.set(\"volume\", tonumber(volume))\r\n  end\r\nend\r\n\r\nfunction playSound(i)\r\n  fx_master.AssetBundle.playLoopingEffect(i)\r\nend\r\n\r\nfunction playMusic(i)\r\n  bgm_player.AssetBundle.playLoopingEffect(i)\r\nend\r\n\r\nfunction stopSound()\r\n  fx_master.Assetbundle.playLoopingEffect(0)\r\nend\r\n\r\nfunction stopMusic()\r\n  bgm_player.AssetBundle.playLoopingEffect(0)\r\nend\r\n\r\n---Extracts a child element through a group of other elements\r\nfunction extractChild(element, children) -- Credit to dzikakulka, modified by Skeeveo. Extracts children/components easily\r\n  assert(type(children) == \"table\", \"children must be in table\")\r\n  logStyle(\"error\", \"Red\")\r\n  for _, name in ipairs(children) do\r\n    assert(type(name) == \"string\", \"children names must be a string\")\r\n    if element.getChild(name) == nil then\r\n      log(element.getChildren(), \"children available:\", \"error\")\r\n      print(element.getChildren()[1])\r\n      log(children, \"children selected:\", \"error\")\r\n      error(\"child does not exist: \" .. name)\r\n    end\r\n    element = element.getChild(name)\r\n  end\r\n  return element\r\nend\r\n\r\n-------------------------------\r\n-- Camera Functions\r\n-------------------------------\r\n-- Locks the camera into a position as best as it can\r\nfunction cameraLock(p, pi, y, d)\r\n  local function cameraLockLoop()\r\n    for _, player in ipairs(Player.getPlayers()) do\r\n      player.lookAt({position = p, pitch = pi, yaw = y, distance = d})\r\n    end\r\n    if CAMERALOCK == true then\r\n      Wait.time(cameraLockLoop, 0.0005) -- Seems to be the magic number to stop right-click dolly\r\n    end\r\n  end\r\n  CAMERALOCK = true\r\n  cameraLockLoop()\r\nend\r\n\r\n-- Move camera to new position\r\nfunction cameraMove(p, pi, y, d)\r\n  for _, player in ipairs(Player.getPlayers()) do\r\n    player.lookAt({position = p, pitch = pi, yaw = y, distance = d})\r\n  end\r\nend\r\n\n----#include !/mtgalaxy/main/utilities\n----#include !/mtgalaxy/main/battler/main\n-- Handles battles\r\ndo\r\n  Battle = {}\r\n  logStyle(\"success\", \"Green\")\r\n  logStyle(\"error\", \"Red\")\r\n  logStyle(\"warning\", \"Yellow\")\r\n\r\n  local function tablecopy(orig) -- Required not to overwrite tables\r\n    local orig_type = type(orig)\r\n    local copy\r\n    if orig_type == 'table' then\r\n      copy = {}\r\n      for orig_key, orig_value in pairs(orig) do\r\n        copy[orig_key] = orig_value\r\n      end\r\n    else -- number, string, boolean, etc\r\n      copy = orig\r\n    end\r\n    return copy\r\n  end\r\n\r\n  local default_values = {\r\n    weather = \"clear\",\r\n    stage = \"setup\",\r\n    teams = {}\r\n  }\r\n\r\n  local memory = tablecopy(default_values)\r\n\r\n  function Battle.start(teams)\r\n    if not teams then log(\"teams are needed to start the match\", \"\", \"error\") end\r\n    local loaded_teams = {}\r\n\r\n    if memory.stage ~= \"setup\" then\r\n      log(\"Battle.start failed: wrong stage\", \"\", \"error\")\r\n      return nil\r\n    end\r\n\r\n    for x, d in pairs(teams) do\r\n      for _, d in pairs(d[\"pkmn\"]) do\r\n        if not d.chp or not d.maxhp or not gmtD[\"JSON\"][\"pkmn\"][d.pkmn] then -- Verify data works\r\n          log(\"battle.start failed: bad data\", \"\", \"error\")\r\n          if not d.chp then\r\n            log(\"expected chp, got nil\", \"\", \"error\")\r\n          elseif not d.maxhp then\r\n            log(\"expected maxhp, got nil\", \"\", \"error\")\r\n          elseif not gmtD[\"JSON\"][\"pkmn\"][d.pkmn] then\r\n            log(\"could not find Pokemon in database\", \"\", \"error\")\r\n          end\r\n          return nil\r\n        end\r\n      end\r\n    end\r\n\r\n\r\n    memory.teams = teams\r\n    memory.stage = \"battle\"\r\n    log(\"Battle module: battle started\", \"\", \"success\")\r\n    return nil\r\n  end\r\n\r\n  function Battle.setAction(player, action)\r\n    if memory.stage ~= \"battle\" then\r\n      log(\"Cannot set action outside of battle stage\", \"\", \"error\")\r\n      return nil\r\n    end\r\n    memory[\"teams\"][player][\"action\"] = action\r\n\r\n    log(\"Player \".. player .. \" set next action to \".. action, \"\", \"success\")\r\n  end\r\n\r\n  function Battle.setMove(player, move, pkmnid)\r\n    if memory.stage ~= \"battle\" then\r\n      log(\"Cannot set move outside of battle stage\", \"\", \"error\")\r\n    end\r\n    local team = memory[\"teams\"][player]\r\n    local selected = team[\"selected\"]\r\n\r\n    if not team[\"pkmn_selected\"][pkmnid] then\r\n      log(\"Pkmn'\".. pkmnid ..\"' is not presently active\", \"\", \"error\")\r\n    end\r\n\r\n    local pkmn = team[\"pkmn_selected\"][pkmnid][\"pkmn\"]\r\n\r\n    if gmtD[\"JSON\"][\"pkmn\"][pkmn][\"attacks\"][move] then\r\n      team[\"nextmove\"] = move\r\n    else\r\n      log(\"Move does not exist in db\", \"\", \"error\")\r\n      return nil\r\n    end\r\n    log(\"Pokemon \"..pkmn..\"(\".. pkmnid .. \") set move to \".. move, \"\", \"success\")\r\n  end\r\n\r\n  function Battle.setPkmn(player, pkmnid) -- Futureproofing for double battles\r\n    if memory.stage ~= \"battle\" then\r\n      log(\"Cannot set pkmn outside of battle stage\", \"\", \"error\")\r\n    end\r\n\r\n    local team = memory[\"teams\"][player]\r\n    local pkmn = team[\"pkmn\"][pkmnid]\r\n\r\n    if not pkmn then\r\n      log(\"move does not exist in db\", \"\", \"error\")\r\n      return nil\r\n    end\r\n\r\n    if not team[\"pkmn_selected\"] then team[\"pkmn_selected\"] = {} end\r\n\r\n    team[\"pkmn_selected\"][pkmnid] = pkmn\r\n    team[\"pkmn\"][pkmnid] = nil\r\n    log(\"Pokemon \".. team[\"pkmn_selected\"][pkmnid][\"pkmn\"]..\"(\" .. pkmnid .. \") added to \" .. player .. \"'s active Pokemon\", \"\", \"success\")\r\n  end\r\n\r\n  -- Action note:\r\n  -- Regardless of # of Pkmn, you can only do one action.\r\n\r\n  function Battle.nextRound(debug)\r\n    if not debug then debug = false end\r\n    if memory.stage ~= \"battle\" then\r\n      log(\"nextRound can only be used during battle phase\", \"\", \"error\")\r\n      return nil\r\n    end\r\n\r\n    memory.stage = \"round\"\r\n\r\n    Battle.round = coroutine.create(function ()\r\n      for x, d in pairs(memory.teams) do\r\n      if d.action == \"attack\" then\r\n        Battle.attack(x)\r\n        coroutine.yield()\r\n      elseif d.action == \"item\" then\r\n        Battle.useItem(x)\r\n        coroutine.yield()\r\n      elseif d.action == \"switch\" then\r\n        Battle.switchPkmn(x)\r\n        coroutine.yield()\r\n      elseif d.action == \"forfeit\" then\r\n        Battle.forfeit(x)\r\n        coroutine.yield()\r\n      end\r\n    end end )\r\n    coroutine.resume(Battle.round)\r\n  end\r\n\r\n  function Battle.attack(team)\r\n    Wait.time(|| coroutine.resume(Battle.round), 2)\r\n  end\r\n\r\n  function Battle.useItem(team)\r\n  end\r\n\r\n  function Battle.switchPkmn(team)\r\n  end\r\n\r\n  function Battle.forfeit(team)\r\n  end\r\n\r\n\r\nend\r\n\n----#include !/mtgalaxy/main/battler/main\n----#include !/mtgalaxy/main/battler/debug\ndo\r\n  Battledebug = {}\r\n\r\n  local teambad = {\r\n    [\"White\"] = {\r\n      [\"4fBgf\"] = {\r\n        pkmn = \"nonexistant\",\r\n        chp = 50,\r\n        maxhp = 50\r\n      }\r\n    },\r\n    [\"Red\"] = {\r\n      [\"T6fGs\"] = {\r\n        pkmn = \"Charmander\",\r\n        chp = 50\r\n      }\r\n    }\r\n  }\r\n\r\n  local teamgood = {\r\n    [\"White\"] = {\r\n      [\"pkmn\"] = {\r\n        [\"4fBgf\"] = {\r\n          pkmn = \"charmander\",\r\n          chp = 50,\r\n          maxhp = 50\r\n        }\r\n      }\r\n    },\r\n    [\"Red\"] = {\r\n      [\"pkmn\"] = {\r\n        [\"4fBgf\"] = {\r\n          pkmn = \"charmander\",\r\n          chp = 50,\r\n          maxhp = 50\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  function Battledebug.debugTeam()\r\n    return teamgood\r\n  end\r\n\r\n  function Battledebug.debug(animate)\r\n    Battle.start(teamgood) -- should succeed\r\n    Battle.setAction(\"Red\",\"attack\")\r\n    Battle.setAction(\"White\",\"attack\")\r\n    Battle.setPkmn(\"White\", \"4fBgf\")\r\n    Battle.setMove(\"White\",\"Ember\", \"4fBgf\")\r\n    Battle.nextRound()\r\n  end\r\nend\r\n\n----#include !/mtgalaxy/main/battler/debug\n----#include !/mtgalaxy/main/object_scripts/pfab\n-- Script used by the main battle control panels.\r\nPFAB_SCRIPT = [[\r\nfunction onLoad()\r\n  ballzone = getObjectFromGUID(\"ef262a\")\r\n  ballsinzone = {}\r\n  selectedballs = {{slot=false},{slot=false},{slot=false},{slot=false},{slot=false}, {slot=false}}\r\n  -- Ball coordinates, these are the LOCAL COORDINATES to the slots. Must be precise since balls are small\r\n  ball_positions = {{1.44095, 1.72622, 1.51701}, {0.95651, 1.69791, 1.94585}, {0.35313, 1.64010, 2.22299}, { - 0.36583, 1.70543, 2.23058}, { - 0.965524, 1.70518, 1.94761}, { - 1.45041, 1.71856, 1.51634}}\r\nend\r\n\r\nfunction onObjectEnterScriptingZone(zone, enter_object)\r\n  if zone == ballzone and enter_object.getName() == \"Pokeball\" then\r\n    table.insert(ballsinzone, enter_object)\r\n  end\r\nend\r\n\r\nfunction onObjectLeaveScriptingZone(zone, leave_object)\r\n  if zone == ballzone and leave_object.getName() == \"Pokeball\" then\r\n    for x, d in pairs(ballsinzone) do\r\n      if leave_object == d then\r\n        table.remove(ballsinzone, x)\r\n      end\r\n    end\r\n  end\r\nend\r\n\r\nfunction onObjectDrop(_, dropped_object)\r\n  for x, d in pairs(ballsinzone) do\r\n    if dropped_object == d then\r\n      for c, l in ipairs(selectedballs) do\r\n        if l.slot == false then\r\n          l.object = dropped_object\r\n          l.slot = true\r\n          setScaleSmooth(dropped_object, 0.25, 0.2)\r\n          local rot = self.getRotation()\r\n          dropped_object.setPositionSmooth(self.PositionToWorld(ball_positions[c]), false)\r\n          dropped_object.setRotationSmooth(rot, false, true)\r\n\r\n          -- Prevents the pokeball from accidentally leaving early outside of objectPickup\r\n          local watch = function() return dropped_object.resting end -- Do not watch the setpossmooth because the ball technically further because of the scale being set\r\n          Wait.condition(|| dropped_object.jointTo(self, {[\"type\"] = \"Fixed\", [\"collision\"] = true, [\"break_force\"] = 1000.0, [\"break_torgue\"] = 1000.0, }), watch, 15)\r\n          return nil\r\n        end\r\n      end\r\n    end\r\n  end\r\nend\r\n\r\nfunction onObjectPickUp(_, pickup_object)\r\n  for x, d in ipairs(selectedballs) do\r\n    if pickup_object == d.object then\r\n      d.object = nil\r\n      d.slot = false\r\n      pickup_object.jointTo()\r\n      setScaleSmooth(pickup_object, 1, 0.2)\r\n    end\r\n  end\r\nend\r\n\r\nfunction setScaleSmooth(object, tonum, length) -- Smoothly sets a scale\r\n  --Coroutine\r\n  function coroutine_setScaleSmooth()\r\n    local time_start = os.time()\r\n    local start = object.getScale().x\r\n\r\n    while os.time() <= time_start + length do\r\n      if length > 0 then\r\n        local time = os.time() - time_start\r\n        local steppedScale = (tonum - start) * time / length + start\r\n        object.setScale({steppedScale, steppedScale, steppedScale})\r\n        coroutine.yield(0)\r\n      end\r\n    end\r\n    object.setScale({tonum, tonum, tonum})\r\n    coroutine.yield(0)\r\n    return 1\r\n  end\r\n  --\r\n\r\n  startLuaCoroutine(self, \"coroutine_setScaleSmooth\")\r\nend\r\n]]\r\n\n----#include !/mtgalaxy/main/object_scripts/pfab\n----#include !/mtgalaxy/main/data/misc_tables\n-- Misc global table variables to save.\r\nBGM_VOLUME = {}\r\nFX_VOLUME = {}\r\n\n----#include !/mtgalaxy/main/data/misc_tables\n\r\n-------------------------------------------\r\n-- Todo list\r\n-------------------------------------------\r\n-- TODO changelog stuff\r\n-- TODO make scene manager delete things gosh darn it / reorganize it\r\n-- TODO make new game temporarily do something\r\n-- TODO ???? profit\r\n-------------------------------------------\r\n-- Debug options\r\n-------------------------------------------\r\nNOLOAD = false -- Prevents game from loading to commit permanent object saves if true\r\nMUSIC = false -- Does not play any music if false\r\nSCENETOLOAD = battle_simulator -- Table of scene to load automatically at start\r\n-------------------------------------------\r\n-- Global Variables\r\n-------------------------------------------\r\nSAVEVERSION = 0.001\r\nCAMERALOCK = false -- Whether the camera is locked\r\n-------------------------------------------\r\n\r\nfunction onLoad()\r\n\r\n  Battledebug.debug()\r\n\r\n  loading_screen = getObjectFromGUID(\"d14923\")\r\n  bgm_player = getObjectFromGUID(\"c23be9\")\r\n  fx_master = getObjectFromGUID(\"6462bd\")\r\n  scene_objects = {} -- WARNING DO NOT KEEP ME\r\n\r\n  -- TODO add some functions for saving and loading at the end\r\n  if NOLOAD == false and not SCENETOLOAD then\r\n    firstLoad()\r\n    setTheme()\r\n  elseif SCENETOLOAD then\r\n    loadScene(SCENETOLOAD, false)\r\n    Wait.condition(function() Wait.time(function() -- Insert any debug options after sceneload here\r\n\r\n    end, 0.75) end, GameloadWatch)\r\n    self.UI.hide(\"loading\")\r\n    self.UI.hide(\"loading_panel\")\r\n  else\r\n    self.UI.hide(\"loading\")\r\n    self.UI.hide(\"loading_panel\")\r\n  end\r\nend",
+  "LuaScriptState": "",
+  "Grid": {
+    "Type": 0,
+    "Lines": false,
+    "Color": {
+      "r": 0.0,
+      "g": 0.0,
+      "b": 0.0
+    },
+    "Opacity": 0.75,
+    "ThickLines": false,
+    "Snapping": false,
+    "Offset": false,
+    "BothSnapping": false,
+    "xSize": 2.0,
+    "ySize": 2.0,
+    "PosOffset": {
+      "x": 0.0,
+      "y": 1.0,
+      "z": 0.0
+    }
+  },
+  "Lighting": {
+    "LightIntensity": 0.79600054,
+    "LightColor": {
+      "r": 1.0,
+      "g": 0.9804,
+      "b": 0.8902
+    },
+    "AmbientIntensity": 1.50800037,
+    "AmbientType": 1,
+    "AmbientSkyColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "AmbientEquatorColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "AmbientGroundColor": {
+      "r": 0.5,
+      "g": 0.5,
+      "b": 0.5
+    },
+    "ReflectionIntensity": 1.0,
+    "LutIndex": 0,
+    "LutContribution": 1.0,
+    "LutURL": ""
+  },
+  "Hands": {
+    "Enable": true,
+    "DisableUnused": false,
+    "Hiding": 0,
+    "HandTransforms": [
+      {
+        "Color": "Blue",
+        "Transform": {
+          "posX": 23.6700039,
+          "posY": 3.34820342,
+          "posZ": 34.4527626,
+          "rotX": 0.0,
+          "rotY": 179.8,
+          "rotZ": 0.0,
+          "scaleX": 15.327879,
+          "scaleY": 11.8970528,
+          "scaleZ": 6.350643
+        }
+      },
+      {
+        "Color": "Brown",
+        "Transform": {
+          "posX": 0.0,
+          "posY": 3.34820342,
+          "posZ": -34.42515,
+          "rotX": 0.0,
+          "rotY": 0.0,
+          "rotZ": 0.0,
+          "scaleX": 15.3268919,
+          "scaleY": 11.8970528,
+          "scaleZ": 6.35014534
+        }
+      },
+      {
+        "Color": "Green",
+        "Transform": {
+          "posX": -23.6700039,
+          "posY": 3.34820342,
+          "posZ": 34.43159,
+          "rotX": 0.0,
+          "rotY": 180.0,
+          "rotZ": 0.0,
+          "scaleX": 15.3268747,
+          "scaleY": 11.8970528,
+          "scaleZ": 6.35014534
+        }
+      },
+      {
+        "Color": "Orange",
+        "Transform": {
+          "posX": -51.6596222,
+          "posY": 3.34820342,
+          "posZ": -11.7324,
+          "rotX": 0.0,
+          "rotY": 90.0,
+          "rotZ": 0.0,
+          "scaleX": 15.19491,
+          "scaleY": 11.8970528,
+          "scaleZ": 6.40616
+        }
+      },
+      {
+        "Color": "Pink",
+        "Transform": {
+          "posX": 51.64263,
+          "posY": 3.34820342,
+          "posZ": -11.7324,
+          "rotX": 0.0,
+          "rotY": 270.0,
+          "rotZ": 0.0,
+          "scaleX": 15.1948948,
+          "scaleY": 11.8970528,
+          "scaleZ": 6.40616
+        }
+      },
+      {
+        "Color": "Purple",
+        "Transform": {
+          "posX": 51.5785675,
+          "posY": 3.34820342,
+          "posZ": 11.7324,
+          "rotX": 0.0,
+          "rotY": 270.0,
+          "rotZ": 0.0,
+          "scaleX": 15.1948967,
+          "scaleY": 11.8970528,
+          "scaleZ": 6.40616
+        }
+      },
+      {
+        "Color": "Red",
+        "Transform": {
+          "posX": -23.6700039,
+          "posY": 3.34820342,
+          "posZ": -34.42515,
+          "rotX": 0.0,
+          "rotY": 0.0,
+          "rotZ": 0.0,
+          "scaleX": 15.3268948,
+          "scaleY": 11.8970528,
+          "scaleZ": 6.35014534
+        }
+      },
+      {
+        "Color": "Teal",
+        "Transform": {
+          "posX": 0.0,
+          "posY": 3.34820342,
+          "posZ": 34.4527626,
+          "rotX": 0.0,
+          "rotY": 179.800049,
+          "rotZ": 0.0,
+          "scaleX": 15.3278809,
+          "scaleY": 11.8970528,
+          "scaleZ": 6.350643
+        }
+      },
+      {
+        "Color": "White",
+        "Transform": {
+          "posX": 23.6700039,
+          "posY": 3.34820342,
+          "posZ": -34.2558136,
+          "rotX": 0.0,
+          "rotY": 0.0,
+          "rotZ": 0.0,
+          "scaleX": 15.3268747,
+          "scaleY": 11.8970547,
+          "scaleZ": 6.705048
+        }
+      },
+      {
+        "Color": "Yellow",
+        "Transform": {
+          "posX": -51.6596222,
+          "posY": 3.34820342,
+          "posZ": 11.7324,
+          "rotX": 0.0,
+          "rotY": 90.0,
+          "rotZ": 0.0,
+          "scaleX": 15.1949091,
+          "scaleY": 11.8970528,
+          "scaleZ": 6.40616
+        }
+      }
+    ]
+  },
+  "Turns": {
+    "Enable": false,
+    "Type": 0,
+    "TurnOrder": [],
+    "Reverse": false,
+    "SkipEmpty": false,
+    "DisableInteractions": false,
+    "PassTurns": true,
+    "TurnColor": ""
+  },
+  "ObjectStates": [
+    {
+      "Name": "Custom_Assetbundle",
+      "Transform": {
+        "posX": 0.0,
+        "posY": 0.0,
+        "posZ": 0.0,
+        "rotX": 0.0,
+        "rotY": 0.0,
+        "rotZ": 0.0,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomAssetbundle": {
+        "AssetbundleURL": "https://firebasestorage.googleapis.com/v0/b/mmbndb-dca4f.appspot.com/o/Assetbundles%2Fbgm_player.unity3d?alt=media",
+        "AssetbundleSecondaryURL": "",
+        "MaterialIndex": 0,
+        "TypeIndex": 0,
+        "LoopingEffectIndex": 0
+      },
+      "XmlUI": "",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "GUID": "c23be9"
+    },
+    {
+      "Name": "Custom_Assetbundle",
+      "Transform": {
+        "posX": -5.657004,
+        "posY": 1.4599905,
+        "posZ": -6.994324,
+        "rotX": 3.83633451E-05,
+        "rotY": 359.937531,
+        "rotZ": 9.565548E-05,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomAssetbundle": {
+        "AssetbundleURL": "https://firebasestorage.googleapis.com/v0/b/mmbndb-dca4f.appspot.com/o/Assetbundles%2Foptions_menu.unity3d?alt=media",
+        "AssetbundleSecondaryURL": "",
+        "MaterialIndex": 0,
+        "TypeIndex": 0,
+        "LoopingEffectIndex": 0
+      },
+      "XmlUI": "",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "GUID": "38c20e"
+    },
+    {
+      "Name": "Custom_Assetbundle",
+      "Transform": {
+        "posX": -4.146208,
+        "posY": 1.45998991,
+        "posZ": -6.81358433,
+        "rotX": -8.609852E-05,
+        "rotY": -0.000903849665,
+        "rotZ": -6.477196E-05,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomAssetbundle": {
+        "AssetbundleURL": "https://firebasestorage.googleapis.com/v0/b/mmbndb-dca4f.appspot.com/o/Assetbundles%2Fcredits_menu.unity3d?alt=media",
+        "AssetbundleSecondaryURL": "",
+        "MaterialIndex": 0,
+        "TypeIndex": 0,
+        "LoopingEffectIndex": 0
+      },
+      "XmlUI": "",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "GUID": "0dc88f"
+    },
+    {
+      "Name": "Custom_Assetbundle",
+      "Transform": {
+        "posX": -2.57580519,
+        "posY": 1.45999062,
+        "posZ": -6.742858,
+        "rotX": 2.95078153E-05,
+        "rotY": -7.80281553E-05,
+        "rotZ": -8.067139E-05,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomAssetbundle": {
+        "AssetbundleURL": "https://firebasestorage.googleapis.com/v0/b/mmbndb-dca4f.appspot.com/o/Assetbundles%2Fchangelog_menu.unity3d?alt=media",
+        "AssetbundleSecondaryURL": "",
+        "MaterialIndex": 0,
+        "TypeIndex": 0,
+        "LoopingEffectIndex": 0
+      },
+      "XmlUI": "",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "GUID": "ab1086"
+    },
+    {
+      "Name": "Custom_Assetbundle",
+      "Transform": {
+        "posX": -0.8086894,
+        "posY": 1.45999086,
+        "posZ": -6.86176538,
+        "rotX": 3.08225572E-05,
+        "rotY": 0.000214678235,
+        "rotZ": -4.77119465E-06,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomAssetbundle": {
+        "AssetbundleURL": "https://firebasestorage.googleapis.com/v0/b/mmbndb-dca4f.appspot.com/o/Assetbundles%2Fnew_game_menu2.unity3d?alt=media",
+        "AssetbundleSecondaryURL": "",
+        "MaterialIndex": 0,
+        "TypeIndex": 0,
+        "LoopingEffectIndex": 0
+      },
+      "XmlUI": "",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "GUID": "49edc2"
+    },
+    {
+      "Name": "Custom_Assetbundle",
+      "Transform": {
+        "posX": -0.774047852,
+        "posY": 2.459991,
+        "posZ": -7.03959656,
+        "rotX": 3.27859962E-05,
+        "rotY": -5.92868439E-08,
+        "rotZ": -4.87456373E-06,
+        "scaleX": 1.0,
+        "scaleY": 1.0,
+        "scaleZ": 1.0
+      },
+      "Nickname": "",
+      "Description": "",
+      "GMNotes": "",
+      "ColorDiffuse": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "Locked": true,
+      "Grid": true,
+      "Snap": true,
+      "IgnoreFoW": false,
+      "Autoraise": true,
+      "Sticky": true,
+      "Tooltip": true,
+      "GridProjection": false,
+      "HideWhenFaceDown": false,
+      "Hands": false,
+      "CustomAssetbundle": {
+        "AssetbundleURL": "https://firebasestorage.googleapis.com/v0/b/mmbndb-dca4f.appspot.com/o/Assetbundles%2Ffx_master.unity3d?alt=media",
+        "AssetbundleSecondaryURL": "",
+        "MaterialIndex": 0,
+        "TypeIndex": 0,
+        "LoopingEffectIndex": 0
+      },
+      "XmlUI": "",
+      "LuaScript": "",
+      "LuaScriptState": "",
+      "GUID": "6462bd"
+    }
+  ],
+  "DecalPallet": [],
+  "TabStates": {
+    "0": {
+      "title": "Rules",
+      "body": "Don't use this yet!",
+      "color": "Grey",
+      "visibleColor": {
+        "r": 0.5,
+        "g": 0.5,
+        "b": 0.5
+      },
+      "id": 0
+    },
+    "1": {
+      "title": "White",
+      "body": "",
+      "color": "White",
+      "visibleColor": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      },
+      "id": 1
+    },
+    "2": {
+      "title": "Brown",
+      "body": "",
+      "color": "Brown",
+      "visibleColor": {
+        "r": 0.443,
+        "g": 0.231,
+        "b": 0.09
+      },
+      "id": 2
+    },
+    "3": {
+      "title": "Red",
+      "body": "",
+      "color": "Red",
+      "visibleColor": {
+        "r": 0.856,
+        "g": 0.1,
+        "b": 0.094
+      },
+      "id": 3
+    },
+    "4": {
+      "title": "Orange",
+      "body": "",
+      "color": "Orange",
+      "visibleColor": {
+        "r": 0.956,
+        "g": 0.392,
+        "b": 0.113
+      },
+      "id": 4
+    },
+    "5": {
+      "title": "Yellow",
+      "body": "",
+      "color": "Yellow",
+      "visibleColor": {
+        "r": 0.905,
+        "g": 0.898,
+        "b": 0.172
+      },
+      "id": 5
+    },
+    "6": {
+      "title": "Green",
+      "body": "",
+      "color": "Green",
+      "visibleColor": {
+        "r": 0.192,
+        "g": 0.701,
+        "b": 0.168
+      },
+      "id": 6
+    },
+    "7": {
+      "title": "Blue",
+      "body": "",
+      "color": "Blue",
+      "visibleColor": {
+        "r": 0.118,
+        "g": 0.53,
+        "b": 1.0
+      },
+      "id": 7
+    },
+    "8": {
+      "title": "Teal",
+      "body": "",
+      "color": "Teal",
+      "visibleColor": {
+        "r": 0.129,
+        "g": 0.694,
+        "b": 0.607
+      },
+      "id": 8
+    },
+    "9": {
+      "title": "Purple",
+      "body": "",
+      "color": "Purple",
+      "visibleColor": {
+        "r": 0.627,
+        "g": 0.125,
+        "b": 0.941
+      },
+      "id": 9
+    },
+    "10": {
+      "title": "Pink",
+      "body": "",
+      "color": "Pink",
+      "visibleColor": {
+        "r": 0.96,
+        "g": 0.439,
+        "b": 0.807
+      },
+      "id": 10
+    },
+    "11": {
+      "title": "Black",
+      "body": "",
+      "color": "Black",
+      "visibleColor": {
+        "r": 0.25,
+        "g": 0.25,
+        "b": 0.25
+      },
+      "id": 11
+    }
+  },
+  "VersionNumber": "v12.2.2"
+}
