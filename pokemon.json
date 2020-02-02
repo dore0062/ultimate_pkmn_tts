@@ -9,20 +9,13 @@
       "attacks" : {
         "Chomp" : {
           "animation" : 2,
-          "damage" : 20,
           "duration" : 2.133,
           "energy" : [ null, "colorless", "colorless" ],
-          "id" : 1,
-          "type" : "normal"
         },
         "Ember" : {
           "animation" : 3,
-          "damage" : 0,
           "duration" : 2.133,
           "energy" : [ null, "fire" ],
-          "extra" : "&lt;size=25&gt; 50% chance to &lt;color=red&gt;burn&lt;/color&gt; enemy. &lt;/size&gt;",
-          "id" : 2,
-          "type" : "fire"
         }
       },
       "dex" : 4,
@@ -34,16 +27,13 @@
       "assetbundle" : "http://cloud-3.steamusercontent.com/ugc/787486974294403138/7AEFC60D8C39595F44485283D83FB7E359DCBAD4/",
       "attacks" : {
         "Flamethrower" : {
-          "damage" : 30,
           "duration" : 2.33,
           "energy" : [ null, "fire", "fire" ],
-          "type" : "fire"
         },
         "Slash" : {
           "damage" : 10,
           "duration" : 1.867,
           "energy" : [ null, "colorless" ],
-          "type" : "normal"
         }
       },
       "dex" : 5,
