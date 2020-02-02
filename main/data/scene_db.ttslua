@@ -1,8 +1,8 @@
 -- Scenes used by scenemanager.ttslua
 -- These have to finish downloading/loading for the host before the loading screen will disappear.
+scene = {}
 
--- TODO Fix main menu startup so the logo doesn
-main_menu = {
+scene.main_menu = {
   playarea = 0.23,
   objects = {
     {name = "Background", interactable = false, obtype = "custom_assetbundle", abundle = [[https://firebasestorage.googleapis.com/v0/b/mmbndb-dca4f.appspot.com/o/Assetbundles%2Ftitle_screen.unity3d?alt=media]], position = {0, 0, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},
@@ -13,7 +13,7 @@ main_menu = {
   }
 }
 
-battle_simulator = {
+scene.battle_simulator = {
   playarea = 0.30,
   objects = {
     {obtype = "custom_assetbundle", interactable = false, abundle = [[file:///C:\Users\Skeeto\Desktop\Pokemon Galaxy Trainer\Unity\Fixed_Engine\AssetBundles\beach.unity3d]], position = {0, 1.5, 0}, rotation = {0, 0, 0}, scale = {1, 1, 1}},
@@ -23,7 +23,7 @@ battle_simulator = {
   }
 }
 
-battle_arena_130 = {
+scene.battle_arena_130 = {
   playarea = 0.23,
   objects = {
     {obtype = "custom_assetbundle", abundle = "http://cloud-3.steamusercontent.com/ugc/781868986608156886/7C7C8B79153C1A59576F99091FD2543CD3650801/", position = {0, 0, 0}, rotation = {0, 0, 0}, scale = {5, 5, 5}}

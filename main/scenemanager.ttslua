@@ -1,7 +1,4 @@
-#include !/mtgalaxy/main/data/scenes
-
 -- This file manages scene loading, which are mini-saves to switch between boards.
-
 -- Global function for watching if a scene has been loaded
 GameloadWatch = function() return scene_loaded end
 

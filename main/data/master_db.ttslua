@@ -1,0 +1,61 @@
+-- Damage multipliers
+gmt = {}
+
+gmt.DAMAGE = {
+  SE = 1.30, -- Super effective
+  NO = 1, -- Normal
+  CRIT = 1.60, -- Critical
+  NE = 0.50 -- Not Effective
+}
+
+-- Resistance types
+gmt.RESISTANCE = {
+  ["normal"] = {
+    ["normal"] = gmt.DAMAGE.NO,
+    ["fire"] = gmt.DAMAGE.NO,
+    ["grass"] = gmt.DAMAGE.NO,
+    ["water"] = gmt.DAMAGE.NO,
+    ["fighting"] = gmt.DAMAGE.SE,
+    ["psychic"] = gmt.DAMAGE.NO
+  },
+  ["fire"] = {
+    ["normal"] = gmt.DAMAGE.NO,
+    ["fire"] = gmt.DAMAGE.NE,
+    ["grass"] = gmt.DAMAGE.SE,
+    ["water"] = gmt.DAMAGE.NE,
+    ["fighting"] = gmt.DAMAGE.NE,
+    ["psychic"] = gmt.DAMAGE.NO
+  },
+  ["grass"] = {
+    ["normal"] = gmt.DAMAGE.NO,
+    ["fire"] = gmt.DAMAGE.NE,
+    ["grass"] = gmt.DAMAGE.SE,
+    ["water"] = gmt.DAMAGE.NE,
+    ["fighting"] = gmt.DAMAGE.NE,
+    ["psychic"] = gmt.DAMAGE.NO
+  },
+  ["water"] = {
+    ["normal"] = gmt.DAMAGE.NO,
+    ["fire"] = gmt.DAMAGE.SE,
+    ["grass"] = gmt.DAMAGE.SE,
+    ["water"] = gmt.DAMAGE.NE,
+    ["fighting"] = gmt.DAMAGE.NE,
+    ["psychic"] = gmt.DAMAGE.NO
+  },
+  ["fighting"] = {
+    ["normal"] = gmt.DAMAGE.NO,
+    ["fire"] = gmt.DAMAGE.NE,
+    ["grass"] = gmt.DAMAGE.SE,
+    ["water"] = gmt.DAMAGE.NE,
+    ["fighting"] = gmt.DAMAGE.NE,
+    ["psychic"] = gmt.DAMAGE.NO
+  },
+  ["psychic"] = {
+    ["normal"] = gmt.DAMAGE.NO,
+    ["fire"] = gmt.DAMAGE.NE,
+    ["grass"] = gmt.DAMAGE.SE,
+    ["water"] = gmt.DAMAGE.NE,
+    ["fighting"] = gmt.DAMAGE.NE,
+    ["psychic"] = gmt.DAMAGE.NO
+  }
+}

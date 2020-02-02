@@ -58,13 +58,13 @@ do
 
     for x, d in pairs(teams) do
       for _, d in pairs(d["pkmn"]) do
-        if not d.chp or not d.maxhp or not gmtD["JSON"]["pkmn"][d.pkmn] then -- Verify data works
+        if not d.chp or not d.maxhp or not pkmnDB["pkmn"][d.pkmn] then -- Verify data works
           log("battle.start failed: bad data", "", "error")
           if not d.chp then
             log("expected chp, got nil", "", "error")
           elseif not d.maxhp then
             log("expected maxhp, got nil", "", "error")
-          elseif not gmtD["JSON"]["pkmn"][d.pkmn] then
+          elseif not pkmnDB["pkmn"][d.pkmn] then
             log("could not find Pokemon in database", "", "error")
           end
           return nil
@@ -102,7 +102,7 @@ do
 
     local pkmn = team["pkmn_selected"][pkmnid]["pkmn"]
 
-    if gmtD["JSON"]["pkmn"][pkmn]["attacks"][move] then
+    if pkmnDB["pkmn"][pkmn]["attacks"][move] then
       team["nextmove"] = move
     else
       log("Move does not exist in db", "", "error")
@@ -175,5 +175,7 @@ do
   function Battle.forfeit(team)
   end
 
+  function Battle.damageCalc(attack)
+  end
 
 end

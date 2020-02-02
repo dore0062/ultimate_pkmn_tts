@@ -43,11 +43,11 @@ do
   end
 
   function Battledebug.debug(animate)
-    Battle.start(teamgood) -- should succeed
-    Battle.setAction("Red","attack")
-    Battle.setAction("White","attack")
-    Battle.setPkmn("White", "4fBgf")
-    Battle.setMove("White","Ember", "4fBgf")
-    Battle.nextRound()
+    -- Battle.start(teamgood) -- should succeed
+    -- Battle.setAction("Red","attack")
+    -- Battle.setAction("White","attack")
+    -- Battle.setPkmn("White", "4fBgf")
+    -- Battle.setMove("White","Ember", "4fBgf")
+    -- Battle.nextRound()
   end
 end

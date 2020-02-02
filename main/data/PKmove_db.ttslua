@@ -1,0 +1,8 @@
+PKmove = {}
+
+-- Generic damage move
+function PKmove.basic(move)
+  basicDmg = {
+  }
+  return basicDmg[move]
+end
