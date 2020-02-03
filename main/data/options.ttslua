@@ -1,21 +1,21 @@
----- Global variable options that may frequently be changed
-
--- Global Variables
+---- Global Variables
 -------------------------------------------
 SAVEVERSION = 0.001 -- Current version of the save
 CAMERALOCK = false -- Lock the camera during menu scenes
 
--- Debug
+---- Debug
 -------------------------------------------
 NOLOAD = false -- Prevents game from loading to commit permanent object saves if true
 MUSIC = false -- Plays music
-SCENETOLOAD = scene.battle_simulator -- Table of scene to load automatically at start, skips startscreen
+SCENETOLOAD = scene.battle_simulator -- Table of scene to load automatically at start, skips startscreen  default: nil
 
--- Volume
+---- Volume
+-- Table of objects that the volume settings change
 -------------------------------------------
-BGM_VOLUME = {} -- Music volume
-FX_VOLUME = {} -- FX volume
+BGM_VOLUME = {} -- Music volume default: nil
+FX_VOLUME = {} -- FX volume default: nil
 
--- Battle
+---- Battle
+-- Battle options for the battle module
 -------------------------------------------
-BATTLE_ANIMATIONS = true -- Play animations during battle scenes
+BATTLE_ANIMATIONS = true -- Play animations during battle scenes  default: true
