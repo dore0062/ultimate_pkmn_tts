@@ -163,6 +163,7 @@ do
   end
 
   function Battle.attack(team)
+
     Wait.time(|| coroutine.resume(Battle.round), 2)
   end
 
@@ -177,5 +178,4 @@ do
 
   function Battle.damageCalc(attack)
   end
-
 end

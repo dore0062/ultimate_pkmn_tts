@@ -1,4 +1,8 @@
-#include !/mtgalaxy/main/data/pokemon_database
+#include !/mtgalaxy/main/data/master_db
+#include !/mtgalaxy/main/data/pkmn_db
+#include !/mtgalaxy/main/data/PKmove_db
+#include !/mtgalaxy/main/data/scene_db
+#include !/mtgalaxy/main/data/options
 #include !/mtgalaxy/main/theme
 #include !/mtgalaxy/main/startup
 #include !/mtgalaxy/main/scenemanager
@@ -6,25 +10,10 @@
 #include !/mtgalaxy/main/battler/main
 #include !/mtgalaxy/main/battler/debug
 #include !/mtgalaxy/main/object_scripts/pfab
-#include !/mtgalaxy/main/data/misc_tables
-
--------------------------------------------
--- Debug options
--------------------------------------------
-NOLOAD = false -- Prevents game from loading to commit permanent object saves if true
-MUSIC = false -- Does not play any music if false
-SCENETOLOAD = battle_simulator -- Table of scene to load automatically at start
--------------------------------------------
--- Global Variables
--------------------------------------------
-SAVEVERSION = 0.001
-CAMERALOCK = false -- Whether the camera is locked
--------------------------------------------
 
 function onLoad()
 
   Battledebug.debug()
-
   loading_screen = getObjectFromGUID("d14923")
   bgm_player = getObjectFromGUID("c23be9")
   fx_master = getObjectFromGUID("6462bd")
