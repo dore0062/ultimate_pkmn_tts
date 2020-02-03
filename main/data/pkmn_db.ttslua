@@ -2,49 +2,53 @@
 do
   local db = JSON.decode([[
   {
-  	"database_version": 0.1,
-  	"pkmn": {
-  		"bulbasaur": {
-  			"id": 1
-  		},
-  		"charmander": {
-  			"assetbundle": "http://cloud-3.steamusercontent.com/ugc/787486340357810408/433C9A1F14FDDE7EA0ED642180C86106F9DB6F8E/",
-  			"attacks": {
-  				"Chomp": {
-  					"animation": 2,
-  					"duration": 2.133,
-  					"energy": [null, "colorless", "colorless"]
-  				},
-  				"Ember": {
-  					"animation": 3,
-  					"duration": 2.133,
-  					"energy": [null, "fire"]
-  				}
-  			},
-  			"dex": 4,
-  			"hp": 30,
-  			"id": 4,
-  			"type": "fire"
-  		},
-  		"charmeleon": {
-  			"assetbundle": "http://cloud-3.steamusercontent.com/ugc/787486974294403138/7AEFC60D8C39595F44485283D83FB7E359DCBAD4/",
-  			"attacks": {
-  				"Flamethrower": {
-  					"duration": 2.33,
-  					"energy": [null, "fire", "fire"]
-  				},
-  				"Slash": {
-  					"damage": 10,
-  					"duration": 1.867,
-  					"energy": [null, "colorless"]
-  				}
-  			},
-  			"dex": 5,
-  			"hp": 60,
-  			"id": 5,
-  			"type": "fire"
-  		}
-  	}
+    "database_version" : 0.1,
+    "pkmn" : {
+      "bulbasaur" : {
+        "id" : 1
+      },
+      "charmander" : {
+        "assetbundle" : "http://cloud-3.steamusercontent.com/ugc/787486340357810408/433C9A1F14FDDE7EA0ED642180C86106F9DB6F8E/",
+        "attacks" : {
+          "Chomp" : {
+            "animation" : 2,
+            "movetype" : "basic"
+            "duration" : 2.133,
+            "energy" : [ null, "colorless", "colorless" ]
+          },
+          "Ember" : {
+            "animation" : 3,
+            "movetype" : "function"
+            "duration" : 2.133,
+            "energy" : [ null, "fire" ]
+          }
+        },
+        "dex" : 4,
+        "hp" : 30,
+        "id" : 4,
+        "type" : "fire"
+      },
+      "charmeleon" : {
+        "assetbundle" : "http://cloud-3.steamusercontent.com/ugc/787486974294403138/7AEFC60D8C39595F44485283D83FB7E359DCBAD4/",
+        "attacks" : {
+          "Flamethrower" : {
+            "duration" : 2.33,
+            "movetype" : "function"
+            "energy" : [ null, "fire", "fire" ]
+          },
+          "Slash" : {
+            "damage" : 10,
+            "movetype" : "basic"
+            "duration" : 1.867,
+            "energy" : [ null, "colorless" ]
+          }
+        },
+        "dex" : 5,
+        "hp" : 60,
+        "id" : 5,
+        "type" : "fire"
+      }
+    }
   }
 ]])
 
