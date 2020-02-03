@@ -12,13 +12,13 @@ do
         "attacks" : {
           "Chomp" : {
             "animation" : 2,
-            "movetype" : "basic"
+            "movetype" : "basic",
             "duration" : 2.133,
             "energy" : [ null, "colorless", "colorless" ]
           },
           "Ember" : {
             "animation" : 3,
-            "movetype" : "function"
+            "movetype" : "function",
             "duration" : 2.133,
             "energy" : [ null, "fire" ]
           }
@@ -33,12 +33,12 @@ do
         "attacks" : {
           "Flamethrower" : {
             "duration" : 2.33,
-            "movetype" : "function"
+            "movetype" : "function",
             "energy" : [ null, "fire", "fire" ]
           },
           "Slash" : {
             "damage" : 10,
-            "movetype" : "basic"
+            "movetype" : "basic",
             "duration" : 1.867,
             "energy" : [ null, "colorless" ]
           }
