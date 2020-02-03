@@ -1,23 +1,7 @@
 do
   Battledebug = {}
 
-  local teambad = {
-    ["White"] = {
-      ["4fBgf"] = {
-        pkmn = "nonexistant",
-        chp = 50,
-        maxhp = 50
-      }
-    },
-    ["Red"] = {
-      ["T6fGs"] = {
-        pkmn = "Charmander",
-        chp = 50
-      }
-    }
-  }
-
-  local teamgood = {
+  local team = {
     ["White"] = {
       ["pkmn"] = {
         ["4fBgf"] = {
@@ -43,11 +27,11 @@ do
   end
 
   function Battledebug.debug(animate)
-    -- Battle.start(teamgood) -- should succeed
-    -- Battle.setAction("Red","attack")
-    -- Battle.setAction("White","attack")
-    -- Battle.setPkmn("White", "4fBgf")
-    -- Battle.setMove("White","Ember", "4fBgf")
-    -- Battle.nextRound()
+    Battle.start(team) -- should succeed
+    Battle.setAction("Red","attack")
+    Battle.setAction("White","attack")
+    Battle.setPkmn("White", "4fBgf")
+    Battle.setMove("White","Ember", "4fBgf")
+    Battle.nextRound()
   end
 end
