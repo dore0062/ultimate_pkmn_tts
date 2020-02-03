@@ -10,12 +10,12 @@
         "Chomp" : {
           "animation" : 2,
           "duration" : 2.133,
-          "energy" : [ null, "colorless", "colorless" ],
+          "energy" : [ null, "colorless", "colorless" ]
         },
         "Ember" : {
           "animation" : 3,
           "duration" : 2.133,
-          "energy" : [ null, "fire" ],
+          "energy" : [ null, "fire" ]
         }
       },
       "dex" : 4,
@@ -28,12 +28,12 @@
       "attacks" : {
         "Flamethrower" : {
           "duration" : 2.33,
-          "energy" : [ null, "fire", "fire" ],
+          "energy" : [ null, "fire", "fire" ]
         },
         "Slash" : {
           "damage" : 10,
           "duration" : 1.867,
-          "energy" : [ null, "colorless" ],
+          "energy" : [ null, "colorless" ]
         }
       },
       "dex" : 5,
