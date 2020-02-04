@@ -48,6 +48,8 @@ do
   local memory = tablecopy(default_values)
 
   function Battle.start(teams)
+    if not BATTLE_ANIMATIONS then BATTLE_ANIMATIONS = true end
+
     if not teams then log("teams are needed to start the match", "", "error") end
     local loaded_teams = {}
 
@@ -100,15 +102,15 @@ do
       log("Pkmn'".. pkmnid .."' is not presently active", "", "error")
     end
 
-    local pkmn = team["pkmn_selected"][pkmnid]["pkmn"]
+    local pkmnname = team["pkmn_selected"][pkmnid]["pkmn"]
 
-    if pkmnDB["pkmn"][pkmn]["attacks"][move] then
-      team["nextmove"] = move
+    if pkmnDB["pkmn"][pkmnname]["attacks"][move] then
+      team["pkmn_selected"][pkmnid]["move"] = move
     else
       log("Move does not exist in db", "", "error")
       return nil
     end
-    log("Pokemon "..pkmn.."(".. pkmnid .. ") set move to ".. move, "", "success")
+    log("Pokemon "..pkmnname.."(".. pkmnid .. ") set move to ".. move, "", "success")
   end
 
   function Battle.setPkmn(player, pkmnid) -- Futureproofing for double battles
@@ -159,12 +161,31 @@ do
         coroutine.yield()
       end
     end end )
+    -- TODO more end of round calcs, such as status effects
     coroutine.resume(Battle.round)
   end
 
+  -- Function attack types get damage from doing a calculation and/or apply status effects, basic attacks always do base damage
+  -- TODO make pkmn set target if necessary
   function Battle.attack(team)
+    math.randomseed(os.time()) -- Reset seed after every attack for pure random
+    for _, d in pairs(memory["teams"][team]["pkmn_selected"]) do
+      local idmg = 0
+      if pkmnDB["pkmn"][d.pkmn]["attacks"][d.move]["movetype"] == "basic" then
+        idmg = PKmove.basic(d.move)
+      else
+        idmg = _G["PKmove"][d.move]()
+      end
 
-    Wait.time(|| coroutine.resume(Battle.round), 2)
+      -- Miss chance is just a straight chance no matter the attack, may add more miss models in the future for RPG's and such
+      local m = math.random(1,100)
+      if m <= 15 then
+        print("Missed!")
+      end
+
+      print(idmg)
+    end
+    coroutine.resume(Battle.round)
   end
 
   function Battle.useItem(team)

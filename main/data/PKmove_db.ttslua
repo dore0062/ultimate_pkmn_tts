@@ -2,7 +2,13 @@ PKmove = {}
 
 -- Generic damage move
 function PKmove.basic(move)
-  basicDmg = {
+  local basicDmg = {
+    Chomp = 20
   }
+
   return basicDmg[move]
+end
+
+function PKmove.Ember()
+  return 5
 end
