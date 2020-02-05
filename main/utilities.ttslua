@@ -9,7 +9,7 @@ end
 
 -- Sets volume of volume table with specified volume
 function setVolume(volumetable, volume)
-  for x, d in ipairs(_G[volumetable]) do
+  for _, d in ipairs(_G[volumetable]) do
     d.set("volume", tonumber(volume))
   end
 end
@@ -23,7 +23,7 @@ function playMusic(i)
 end
 
 function stopSound()
-  fx_master.Assetbundle.playLoopingEffect(0)
+  fx_master.AssetBundle.playLoopingEffect(0)
 end
 
 function stopMusic()
@@ -51,10 +51,10 @@ end
 -- Camera Functions
 -------------------------------
 -- Locks the camera into a position as best as it can
-function cameraLock(p, pi, y, d)
+function cameraLock(position, pitch, yaw, distance)
   local function cameraLockLoop()
     for _, player in ipairs(Player.getPlayers()) do
-      player.lookAt({position = p, pitch = pi, yaw = y, distance = d})
+      player.lookAt({position = position, pitch = pitch, yaw = yaw, distance = distance})
     end
     if CAMERALOCK == true then
       Wait.time(cameraLockLoop, 0.0005) -- Seems to be the magic number to stop right-click dolly
@@ -65,8 +65,8 @@ function cameraLock(p, pi, y, d)
 end
 
 -- Move camera to new position
-function cameraMove(p, pi, y, d)
+function cameraMove(position, pitch, yaw, distance)
   for _, player in ipairs(Player.getPlayers()) do
-    player.lookAt({position = p, pitch = pi, yaw = y, distance = d})
+    player.lookAt({position = position, pitch = pitch, yaw = yaw, distance = distance})
   end
 end

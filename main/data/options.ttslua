@@ -7,7 +7,7 @@ CAMERALOCK = false -- Lock the camera during menu scenes
 -------------------------------------------
 NOLOAD = false -- Prevents game from loading to commit permanent object saves if true
 MUSIC = false -- Plays music
-SCENETOLOAD = scene.battle_simulator -- Table of scene to load automatically at start, skips startscreen  default: nil
+SCENETOLOAD = nil -- Table of scene to load automatically at start, skips startscreen  default: nil
 
 ---- Volume
 -- Table of objects that the volume settings change
