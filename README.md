@@ -1,3 +1,5 @@
+## This repo is no longer maintained. It is now accessable at: https://gitlab.com/Skeeve2/MTGalaxy/
+
 ## Pokemon Master Trainer Galaxy
 
 ### Folder Structure
